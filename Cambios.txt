@@ -1,0 +1,22 @@
+=================================================
+== Pasos para usar eclipse link en el servidor ==
+=================================================
+
+---> Paso 1:
+
+Copiar la libreria de eclipse link en el directorio:
+	{Directorio de instalacion de Wildfly}\modules\system\layers\base\org\eclipse\persistence\main
+
+
+---> Paso 2:
+
+En el fichero module.xml
+
+	<module xmlns="urn:jboss:module:1.1" name="org.eclipse.persistence">
+		<resources>
+			<resource-root path="jipijapa-eclipselink-1.0.1.Final.jar"/>
+			<!-- Colocar una referencia a la libreria copiada -->
+			<resource-root path="eclipselink-2.6.4.jar"/>
+		</resources>
+	
+	...........

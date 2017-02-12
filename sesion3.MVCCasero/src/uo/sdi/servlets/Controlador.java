@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import uo.sdi.acciones.Accion;
 import uo.sdi.model.User;
 import uo.sdi.servlets.util.InicializadorMapas;
+import uo.sdi.servlets.util.InicializadorMapasXML;
 import alb.util.log.Log;
 
 public class Controlador extends javax.servlet.http.HttpServlet {
@@ -33,7 +34,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
      * 
      */
     public void init() throws ServletException {
-	InicializadorMapas init = new InicializadorMapas();
+	InicializadorMapasXML init = new InicializadorMapasXML();
 
 	mapaDeAcciones = init.crearMapaAcciones();
 	mapaDeNavegacion = init.crearMapaDeNavegacion();

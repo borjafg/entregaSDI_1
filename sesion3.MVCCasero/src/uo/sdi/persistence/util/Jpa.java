@@ -1,19 +1,10 @@
 package uo.sdi.persistence.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 public class Jpa {
 
@@ -23,6 +14,7 @@ public class Jpa {
     public static EntityManager createEntityManager() {
 	EntityManager entityManager = getEmf().createEntityManager();
 	emThread.set(entityManager);
+
 	return entityManager;
     }
 
@@ -32,39 +24,25 @@ public class Jpa {
 
     private static EntityManagerFactory getEmf() {
 	if (emf == null) {
-	    String persistenceUnitName = loadPersistentUnitName();
-	    emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+	    emf = jndiFind("java:/fatoriaEclipselink");
 	}
 
 	return emf;
     }
 
-    private static String loadPersistentUnitName() {
+    private static EntityManagerFactory jndiFind(String name) {
+	Context ctx;
+
 	try {
-	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-	    DocumentBuilder db = dbf.newDocumentBuilder();
+	    ctx = new InitialContext();
 
-	    InputStream input = Jpa.class
-		    .getResourceAsStream("/META-INF/persistence.xml");
-	    Document doc = db.parse(input);
-
-	    doc.getDocumentElement().normalize();
-	    NodeList nl = doc.getElementsByTagName("persistence-unit");
-
-	    return ((Element) nl.item(0)).getAttribute("name");
+	    return (EntityManagerFactory) ctx.lookup(name);
 	}
 
-	catch (ParserConfigurationException e1) {
-	    throw new RuntimeException(e1);
+	catch (NamingException e) {
+	    throw new RuntimeException(e);
 	}
 
-	catch (SAXException e1) {
-	    throw new RuntimeException(e1);
-	}
-
-	catch (IOException e1) {
-	    throw new RuntimeException(e1);
-	}
     }
 
 }

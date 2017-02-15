@@ -24,11 +24,11 @@ public class DeleteCategoryCommand implements Command<Void> {
 
 	// Eliminar tareas del usuario que pertenezcan a esa categoria
 	for (Task tarea : category.getTasks()) {
-	    user.eliminarTarea(tarea);
+	    user.desvincularTarea(tarea);
 	    Jpa.getManager().remove(tarea);
 	}
 
-	user.eliminarCategoria(category);
+	user.desvincularCategoria(category);
 	Jpa.getManager().remove(category);
 
 	return null;

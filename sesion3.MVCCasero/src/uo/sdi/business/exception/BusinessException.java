@@ -1,6 +1,7 @@
 package uo.sdi.business.exception;
 
 public class BusinessException extends Exception {
+
     private static final long serialVersionUID = 4001710687990554589L;
 
     public BusinessException() {

@@ -18,7 +18,7 @@ public class DeleteTaskCommand implements Command<Void> {
     public Void execute() throws BusinessException {
 	Task task = TaskFinder.findById(taskId);
 
-	task.getUser().eliminarTarea(task);
+	task.getUser().desvincularTarea(task);
 	Jpa.getManager().remove(task);
 
 	return null;

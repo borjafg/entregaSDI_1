@@ -47,7 +47,10 @@ public class Jpa {
 
     public static void close() {
 	EntityManager em = getManager();
-	if (em == null) return;
+
+	if (em == null)
+	    return;
+
 	em.close();
 	emThread.set(null);
     }

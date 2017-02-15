@@ -30,7 +30,7 @@
 			<resultado valorResultado="EXITO">
 				<jsp valorJSP="/principalUsuario.jsp" />
 			</resultado>
-			
+
 			<resultado valorResultado="FRACASO">
 				<jsp valorJSP="/principalUsuario.jsp" />
 			</resultado>

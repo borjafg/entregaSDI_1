@@ -10,9 +10,6 @@ import uo.sdi.persistence.util.Jpa;
 
 public class CommandExecutor<T> {
 
-    //@PersistenceContext
-    //private EntityManager ent;
-
     public T execute(Command<T> cmd) throws BusinessException {
 	EntityManager ent = Jpa.createEntityManager();
 	EntityTransaction trx = ent.getTransaction();
@@ -23,7 +20,6 @@ public class CommandExecutor<T> {
 	    trx.commit();
 
 	    return res;
-	    //return null;
 	}
 
 	catch (PersistenceException | BusinessException ex) {
@@ -35,9 +31,7 @@ public class CommandExecutor<T> {
 	}
 
 	finally {
-	    if (ent != null) {
-		Jpa.close();
-	    }
+	    Jpa.close();
 	}
     }
 

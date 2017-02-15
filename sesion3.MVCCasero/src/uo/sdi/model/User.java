@@ -3,6 +3,7 @@ package uo.sdi.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,10 +32,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserStatus status = UserStatus.ENABLED;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Category> categories = new HashSet<Category>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Task> tasks = new HashSet<Task>();
 
     User() {
@@ -50,8 +51,8 @@ public class User {
     // =============================
 
     /**
-     * Desvincula una tarea de su categoria y de su usuario para que pueda
-     * ser eliminada de la base de datos.
+     * Desvincula una tarea de su categoria y de su usuario para que pueda ser
+     * eliminada de la base de datos.
      * 
      * @param tarea
      *            tarea que se debe eliminar
@@ -60,7 +61,7 @@ public class User {
      *             el usuario no tiene asignada esa tarea
      * 
      */
-    public void eliminarTarea(Task tarea) throws BusinessException {
+    public void desvincularTarea(Task tarea) throws BusinessException {
 	if (!tasks.contains(tarea)) {
 	    throw new BusinessException("El usuario no tiene asignada esa "
 		    + "tarea.");
@@ -79,9 +80,13 @@ public class User {
      * 
      * @throws BusinessException
      *             la categoria tiene tareas asignadas o no pertenece al usuario
+     *             (se tendrán que haber desvinculado antes para que puedan ser
+     *             eliminadas)
      * 
      */
-    public void eliminarCategoria(Category categoria) throws BusinessException {
+    public void desvincularCategoria(Category categoria)
+	    throws BusinessException {
+
 	if (!categories.contains(categoria)) {
 	    throw new BusinessException("La categoria no pertenece al usuario");
 	}

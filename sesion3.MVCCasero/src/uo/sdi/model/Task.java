@@ -24,8 +24,8 @@ public class Task {
     private String title;
     private String comments;
 
-    @Temporal(TemporalType.DATE)
-    private Date created = DateUtil.today();
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created = DateUtil.now();
 
     @Temporal(TemporalType.DATE)
     private Date planned;
@@ -63,7 +63,7 @@ public class Task {
 	task.setPlanned(planned);
 	task.setFinished(finished);
 	task.setCategory(category);
-	
+
 	return task;
     }
 
@@ -77,6 +77,10 @@ public class Task {
 
     public String getTitle() {
 	return title;
+    }
+
+    public void setTittle(String title) {
+	this.title = title;
     }
 
     public String getComments() {
@@ -143,7 +147,8 @@ public class Task {
 	final int prime = 31;
 	int result = 1;
 
-	result = prime * result + ((title == null) ? 0 : title.hashCode());
+	result = prime * result + ((created == null) ? 0 : created.hashCode());
+	result = prime * result + ((user == null) ? 0 : user.hashCode());
 
 	return result;
     }
@@ -161,10 +166,16 @@ public class Task {
 
 	Task other = (Task) obj;
 
-	if (title == null) {
-	    if (other.title != null)
+	if (created == null) {
+	    if (other.created != null)
 		return false;
-	} else if (!title.equals(other.title))
+	} else if (!created.equals(other.created))
+	    return false;
+
+	if (user == null) {
+	    if (other.user != null)
+		return false;
+	} else if (!user.equals(other.user))
 	    return false;
 
 	return true;

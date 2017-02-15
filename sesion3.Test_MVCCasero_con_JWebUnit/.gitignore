@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-/bin
-=======
 *.class
 
 # Ignorar las clases generadas
@@ -16,4 +13,3 @@ bin/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
->>>>>>> c8718eb181f2c09f7bd730e4062b00b6c963c037

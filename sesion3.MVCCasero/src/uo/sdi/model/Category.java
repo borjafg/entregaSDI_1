@@ -1,5 +1,6 @@
 package uo.sdi.model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TCategories")
@@ -21,6 +24,9 @@ public class Category {
 
     private String name;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
     @ManyToOne
     private User user;
 
@@ -31,9 +37,7 @@ public class Category {
 
     }
 
-    public Category(String name, User user) {
-	this.name = name;
-
+    public Category(User user) {
 	Association.Organizes.link(user, this);
     }
 
@@ -46,7 +50,10 @@ public class Category {
     }
 
     public Category copiar() {
-	return new Category(name + " - copy", user);
+	Category categCopy = new Category(user);
+	categCopy.setName(name + " - copy");
+
+	return categCopy;
     }
 
     // =============================
@@ -59,6 +66,14 @@ public class Category {
 
     public String getName() {
 	return name;
+    }
+
+    public String setName(String name) {
+	return name;
+    }
+
+    public Date getCreated() {
+	return created;
     }
 
     public User getUser() {
@@ -86,7 +101,7 @@ public class Category {
 	final int prime = 31;
 	int result = 1;
 
-	result = prime * result + ((name == null) ? 0 : name.hashCode());
+	result = prime * result + ((created == null) ? 0 : created.hashCode());
 	result = prime * result + ((user == null) ? 0 : user.hashCode());
 
 	return result;
@@ -105,16 +120,10 @@ public class Category {
 
 	Category other = (Category) obj;
 
-	if (id == null) {
-	    if (other.id != null)
+	if (created == null) {
+	    if (other.created != null)
 		return false;
-	} else if (!id.equals(other.id))
-	    return false;
-
-	if (name == null) {
-	    if (other.name != null)
-		return false;
-	} else if (!name.equals(other.name))
+	} else if (!created.equals(other.created))
 	    return false;
 
 	if (user == null) {
@@ -128,7 +137,8 @@ public class Category {
 
     @Override
     public String toString() {
-	return "Category [id=" + id + ", name=" + name + ", user=" + user + "]";
+	return "Category [id=" + id + ", name=" + name + ", created=" + created
+		+ ", user=" + user + "]";
     }
 
 }

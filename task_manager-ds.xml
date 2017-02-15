@@ -8,7 +8,11 @@
 		
 		<connection-url>jdbc:hsqldb:hsql://localhost/task_manager_db</connection-url>
 		<driver>hsqldb.jar</driver>
-		<pool></pool>
+		<pool>
+		    <min-pool-size>10</min-pool-size>
+            <max-pool-size>20</max-pool-size>
+            <prefill>true</prefill>
+		</pool>
 		<security>
 			<user-name>sa</user-name>
 			<password></password>

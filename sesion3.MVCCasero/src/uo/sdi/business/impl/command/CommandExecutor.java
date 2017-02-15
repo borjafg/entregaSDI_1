@@ -36,7 +36,7 @@ public class CommandExecutor<T> {
 
 	finally {
 	    if (ent != null) {
-		ent.close();
+		Jpa.close();
 	    }
 	}
     }

@@ -1,9 +1,5 @@
 *.class
 
-# Ignorar las clases generadas
-build/
-bin/
-
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

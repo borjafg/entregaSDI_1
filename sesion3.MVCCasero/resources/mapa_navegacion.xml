@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapa_navegacion>
+<mapa_navegacion>
+
+	<!-- ========================= -->
+	<!-- ==== Usuario Anónimo ==== -->
+	<!-- ========================= -->
+
+	<rol valorRol="ANONIMO">
+		<opcion valorOpcion="validarse">
+			<resultado valorResultado="FRACASO">
+				<jsp valorJSP="/login.jsp" />
+			</resultado>
+		</opcion>
+	</rol>
+
+
+	<!-- ============================ -->
+	<!-- ==== Usuario registrado ==== -->
+	<!-- ============================ -->
+
+	<rol valorRol="USUARIO">
+		<opcion valorOpcion="validarse">
+			<resultado valorResultado="FRACASO">
+				<jsp valorJSP="/login.jsp" />
+			</resultado>
+		</opcion>
+
+		<opcion valorOpcion="modificarDatos">
+			<resultado valorResultado="EXITO">
+				<jsp valorJSP="/principalUsuario.jsp" />
+			</resultado>
+			
+			<resultado valorResultado="FRACASO">
+				<jsp valorJSP="/principalUsuario.jsp" />
+			</resultado>
+		</opcion>
+	</rol>
+
+
+	<!-- =============================== -->
+	<!-- ==== Usuario administrador ==== -->
+	<!-- =============================== -->
+
+	<rol valorRol="ADMIN">
+		<opcion valorOpcion="">
+			<resultado valorResultado="">
+				<jsp valorJSP="" />
+			</resultado>
+		</opcion>
+	</rol>
+
+</mapa_navegacion>

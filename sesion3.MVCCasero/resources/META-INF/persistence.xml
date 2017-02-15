@@ -4,23 +4,26 @@
     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 
-	<persistence-unit name="task_manager"
-		transaction-type="RESOURCE_LOCAL">
+
+	<persistence-unit name="task_manager" transaction-type="RESOURCE_LOCAL">
 
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
+		<non-jta-data-source>java:jboss/datasources/TaskManagerDS</non-jta-data-source>
+
+		<class>uo.sdi.model.Category</class>
+		<class>uo.sdi.model.Task</class>
+		<class>uo.sdi.model.User</class>
 
 		<properties>
-			<property name="eclipselink.logging.file" value="eclipselink.log" />
 			<property name="eclipselink.logging.level" value="OFF" />
-			
-			<property name="eclipselink.target-server" value="JBoss"/>
-			
-			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost" />
-			<property name="javax.persistence.jdbc.user" value="sa" />
-			<property name="javax.persistence.jdbc.password" value="" />
+
+			<property name="jboss.entity.manager.factory.jndi.name"
+				value="java:/fatoriaEclipselink" />
+
+			<property name="eclipselink.target-server" value="JBoss" />
+			<property name="TargetDatabase" value="HSQL" />
 		</properties>
+
 	</persistence-unit>
 
-</persistence>
+</persistence> 

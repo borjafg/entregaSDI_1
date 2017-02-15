@@ -1,0 +1,6 @@
+A parte de los del otro fichero Cambios.txt
+
+Creo que esto de abajo ya está pero por si acaso comprueba
+
+- Activa en:
+		propiedades del proyecto > Facets > JPA

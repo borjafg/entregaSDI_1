@@ -14,11 +14,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="lib/hsqldb.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commonj.sdo-2.1.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/eclipselink-2.6.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.json-1.0.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.persistence-2.1.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/validation-api-1.1.0.Final.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -6,7 +6,7 @@ import uo.sdi.model.User;
 import uo.sdi.model.types.UserStatus;
 import uo.sdi.persistence.UserFinder;
 
-public class FindLoggableUSerCommand<T> implements Command<User> {
+public class FindLoggableUSerCommand implements Command<User> {
 
     private String login;
     private String password;

@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
     public User findLoggableUser(final String login, final String password)
 	    throws BusinessException {
 
-	return new CommandExecutor<User>()
-		.execute(new FindLoggableUSerCommand<User>(login, password));
+	return new CommandExecutor<User>().execute(new FindLoggableUSerCommand(
+		login, password));
     }
 
 }

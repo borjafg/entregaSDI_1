@@ -111,7 +111,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
     }
 
     /**
-     * Comprueba el rol del usuario que ha realizado la peticion.
+     * Comprueba el rol del usuario que ha realizado la petición.
      * 
      * @param req
      *            petición del usuario
@@ -139,9 +139,9 @@ public class Controlador extends javax.servlet.http.HttpServlet {
      * @param rol
      *            rol del usuario que realiza la peticion
      * @param opcion
-     *            accion enviada desde el navegador del usuario
+     *            acción enviada desde el navegador del usuario
      * 
-     * @return accion que se debe ejecutar para llevar a cabo la petición.
+     * @return acción que se debe ejecutar para llevar a cabo la petición.
      * 
      */
     private Accion buscarObjetoAccionParaAccionNavegador(String rol,
@@ -163,9 +163,9 @@ public class Controlador extends javax.servlet.http.HttpServlet {
      * @param rol
      *            rol del usuario que realiza la petición
      * @param opcion
-     *            accion enviada desde el navegador del usuario
+     *            acción enviada desde el navegador del usuario
      * @param resultado
-     *            resultado de ejecutar la accion correspondiente a esa opcion
+     *            resultado de ejecutar la acción correspondiente a esa opción
      * 
      * @return pagina jsp que debe servirse a al usuario
      * 

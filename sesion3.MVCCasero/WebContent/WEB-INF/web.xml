@@ -30,15 +30,11 @@
 	<!-- ===== Listeners ===== -->
 	<!-- ===================== -->
 
-	<!-- Se ejecutan durante el despliegue y el repliegue de la aplicación -->
+	<!-- Se ejecutan durante el despliegue y el repliegue de la aplicacion -->
 	<!-- Se ejecutan en el orden en el que estan definidos en este fichero -->
 
 	<listener>
 		<listener-class>uo.sdi.listener.LoggingInitialization</listener-class>
-	</listener>
-
-	<listener>
-		<listener-class>uo.sdi.listener.PersistentCounter</listener-class>
 	</listener>
 
 	<!-- ====================== -->

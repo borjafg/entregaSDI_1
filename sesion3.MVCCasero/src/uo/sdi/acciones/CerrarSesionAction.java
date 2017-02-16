@@ -11,7 +11,7 @@ public class CerrarSesionAction implements Accion {
 
 	String resultado = "EXITO";
 
-	// A completar ...
+	request.getSession().invalidate();
 
 	return resultado;
     }

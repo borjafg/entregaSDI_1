@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import uo.sdi.acciones.Accion;
+import uo.sdi.acciones.CerrarSesionAction;
 import uo.sdi.acciones.ModificarDatosAction;
 import uo.sdi.acciones.ValidarseAction;
 
@@ -27,6 +28,7 @@ public class InicializadorMapasJAVA implements InicializadorMapas {
 
 	Map<String, Accion> mapaRegistrado = new HashMap<String, Accion>();
 	mapaRegistrado.put("modificarDatos", new ModificarDatosAction());
+	mapaRegistrado.put("cerrarSesion", new CerrarSesionAction());
 
 	mapaDeAcciones.put("USUARIO", mapaRegistrado); // Rol de usuario
 
@@ -53,16 +55,19 @@ public class InicializadorMapasJAVA implements InicializadorMapas {
 	// === Mapa navegación --> ANONIMO ===
 	// ===================================
 
-	// Inicializar mapas
+	// Inicializar mapas (1)
 	opcionResultadoYJSP = new HashMap<String, Map<String, String>>();
-	resultadoYJSP = new HashMap<String, String>();
+	resultadoYJSP = new HashMap<String, String>(); // --> para cada opcion
 
-	// (1) inicializar mapa de resultados (para cada opcion)
 	// (2) guardar posibles resultados
 	resultadoYJSP.put("FRACASO", "/login.jsp"); // resultado
 
 	// (3) guardar opcion
 	opcionResultadoYJSP.put("validarse", resultadoYJSP); // opcion
+
+	resultadoYJSP = new HashMap<String, String>();
+	resultadoYJSP.put("EXITO", "/login.jsp"); // resultado
+	opcionResultadoYJSP.put("cerrarSesion", resultadoYJSP); // opcion
 
 	// (4) despues de crear y guardar las opciones, guardarlas en su rol
 	mapaDeNavegacion.put("ANONIMO", opcionResultadoYJSP); // rol

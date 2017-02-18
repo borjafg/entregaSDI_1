@@ -27,6 +27,10 @@ public class DuplicateCategoryCommand implements Command<Category> {
 
 	BusinessCheck.isNotNull(original, "La categoria no existe");
 	checkUserNotDisabled(original);
+	BusinessCheck.isNull(CategoryFinder.findByUserIdAndName(original
+		.getUser().getId(), original.getName() + " - copy"), "La "
+		+ "categoría ya fue copiada. Para volver a duplicarla hay que "
+		+ "renombrar antes la categoría copiada.");
 
 	Category copyCat = duplicateCategory(original);
 	duplicateTasks(original, copyCat);
@@ -88,7 +92,7 @@ public class DuplicateCategoryCommand implements Command<Category> {
 
 	for (Task task : tasks) {
 	    Task taskCopy = task.copiar();
-	    
+
 	    taskCopy.setCategory(copyCat);
 
 	    Jpa.getManager().persist(taskCopy);

@@ -1,5 +1,6 @@
 package uo.sdi.business.impl.task;
 
+import java.util.Date;
 import java.util.List;
 
 import uo.sdi.business.TaskService;
@@ -24,9 +25,11 @@ import uo.sdi.persistence.TaskFinder;
 public class TaskServiceImpl implements TaskService {
 
     @Override
-    public Long createCategory(Category category) throws BusinessException {
+    public Long createCategory(String name, Long idUser)
+	    throws BusinessException {
+
 	Category categ = new CommandExecutor<Category>()
-		.execute(new CreateCategoryCommand(category));
+		.execute(new CreateCategoryCommand(name, idUser));
 
 	return categ.getId();
     }
@@ -40,9 +43,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void updateCategory(Category category) throws BusinessException {
+    public void updateCategory(Long id, String name) throws BusinessException {
 	new CommandExecutor<Void>()
-		.execute(new UpdateCategoryCommand(category));
+		.execute(new UpdateCategoryCommand(id, name));
     }
 
     @Override
@@ -69,9 +72,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Long createTask(Task task) throws BusinessException {
+    public Long createTask(String name, boolean forToday, Long idUser)
+	    throws BusinessException {
+
 	Task tarea = new CommandExecutor<Task>().execute(new CreateTaskCommand(
-		task));
+		name, forToday, idUser));
 
 	return tarea.getId();
     }
@@ -87,8 +92,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void updateTask(Task task) throws BusinessException {
-	new CommandExecutor<Void>().execute(new UpdateTaskCommand(task));
+    public void updateTask(Long idTask, String name, String comment,
+	    Date planned, Long idCateg) throws BusinessException {
+
+	new CommandExecutor<Void>().execute(new UpdateTaskCommand(idTask, name,
+		comment, planned, idCateg));
     }
 
     @Override

@@ -32,9 +32,62 @@
 			<resultado valorResultado="EXITO" valorJSP="/listarCategorias" />
 		</opcion>
 
+		<!-- ================ -->
+		<!-- == Categorias == -->
+		<!-- ================ -->
+
 		<opcion valorOpcion="listarCategorias">
 			<resultado valorResultado="FRACASO" valorJSP="/login.jsp" />
 			<resultado valorResultado="EXITO" valorJSP="/principalUsuario.jsp" />
+		</opcion>
+
+		<opcion valorOpcion="nuevaCategoria">
+			<resultado valorResultado="FRACASO" valorJSP="/listarCategorias" />
+			<resultado valorResultado="EXITO" valorJSP="/listarCategorias" />
+		</opcion>
+
+		<opcion valorOpcion="renombrarCategoria">
+			<resultado valorResultado="FRACASO" valorJSP="/listarCategorias" />
+			<resultado valorResultado="EXITO" valorJSP="/listarCategorias" />
+		</opcion>
+
+		<opcion valorOpcion="eliminarCategoria">
+			<resultado valorResultado="FRACASO" valorJSP="/listarCategorias" />
+			<resultado valorResultado="EXITO" valorJSP="/listarCategorias" />
+		</opcion>
+
+		<opcion valorOpcion="duplicarCategoria">
+			<resultado valorResultado="FRACASO" valorJSP="/listarCategorias" />
+			<resultado valorResultado="EXITO" valorJSP="/listarCategorias" />
+		</opcion>
+
+		<!-- ============ -->
+		<!-- == Tareas == -->
+		<!-- ============ -->
+
+		<opcion valorOpcion="listarTareas">
+			<resultado valorResultado="FRACASO" valorJSP="/listarCategorias" />
+			<resultado valorResultado="EXITO" valorJSP="/listarTareas.jsp" />
+		</opcion>
+
+		<opcion valorOpcion="nuevaTarea">
+			<resultado valorResultado="FRACASO" valorJSP="/listarTareas" />
+			<resultado valorResultado="EXITO" valorJSP="/listarTareas" />
+		</opcion>
+
+		<opcion valorOpcion="modificarTarea">
+			<resultado valorResultado="FRACASO" valorJSP="/listarTareas" />
+			<resultado valorResultado="EXITO" valorJSP="/modificar.jsp" />
+		</opcion>
+
+		<opcion valorOpcion="modificarDatosTarea">
+			<resultado valorResultado="FRACASO" valorJSP="/modificarTarea" />
+			<resultado valorResultado="EXITO" valorJSP="/listarTareas" />
+		</opcion>
+
+		<opcion valorOpcion="finalizarTarea">
+			<resultado valorResultado="FRACASO" valorJSP="/listarTareas" />
+			<resultado valorResultado="EXITO" valorJSP="/listarTareas" />
 		</opcion>
 	</rol>
 

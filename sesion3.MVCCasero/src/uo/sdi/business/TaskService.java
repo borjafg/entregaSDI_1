@@ -1,5 +1,6 @@
 package uo.sdi.business;
 
+import java.util.Date;
 import java.util.List;
 
 import uo.sdi.business.exception.BusinessException;
@@ -8,11 +9,12 @@ import uo.sdi.model.Task;
 
 public interface TaskService {
 
-    public Long createCategory(Category category) throws BusinessException;
+    public Long createCategory(String name, Long idUser)
+	    throws BusinessException;
 
     public Long duplicateCategory(Long id) throws BusinessException;
 
-    public void updateCategory(Category category) throws BusinessException;
+    public void updateCategory(Long id, String name) throws BusinessException;
 
     public void deleteCategory(Long id) throws BusinessException;
 
@@ -21,13 +23,15 @@ public interface TaskService {
     public List<Category> findCategoriesByUserId(Long id)
 	    throws BusinessException;
 
-    public Long createTask(Task task) throws BusinessException;
+    public Long createTask(String name, boolean forToday, Long idUser)
+	    throws BusinessException;
 
     public void deleteTask(Long id) throws BusinessException;
 
     public void markTaskAsFinished(Long id) throws BusinessException;
 
-    public void updateTask(Task task) throws BusinessException;
+    public void updateTask(Long idTask, String name, String comment, Date planned,
+	    Long idCateg) throws BusinessException;
 
     public Task findTaskById(Long id) throws BusinessException;
 

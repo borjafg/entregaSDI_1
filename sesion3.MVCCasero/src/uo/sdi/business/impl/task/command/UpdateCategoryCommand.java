@@ -10,44 +10,33 @@ import uo.sdi.persistence.util.Jpa;
 
 public class UpdateCategoryCommand implements Command<Void> {
 
-    private Category category;
+    private Long id;
+    private String name;
 
-    public UpdateCategoryCommand(Category category) {
-	this.category = category;
+    public UpdateCategoryCommand(Long id, String name) {
+	this.id = id;
+	this.name = name;
     }
 
     @Override
     public Void execute() throws BusinessException {
-	Category previous = CategoryFinder.findById(category.getId());
+	Category category = CategoryFinder.findById(id);
 
-	checkCategoryExists(previous);
+	BusinessCheck.isNotNull(category, "La categoria no existe");
+
+	String previousName = category.getName();
+	category.setName(name);
+
 	CategoryCheck.nameIsNotNull(category);
 	CategoryCheck.nameIsNotEmpty(category);
 
-	if (nameIsChanged(previous, category)) {
+	if (!previousName.equals(name)) {
 	    CategoryCheck.isUniqueName(category);
 	}
 
-	checkUserIsNotChanged(previous, category);
-	
 	Jpa.getManager().merge(category);
 
 	return null;
-    }
-
-    private void checkUserIsNotChanged(Category previous, Category current)
-	    throws BusinessException {
-	BusinessCheck.isTrue(
-		previous.getUser().getId().equals(current.getUser().getId()),
-		"Una categoria no puede ser cambiada de usuario");
-    }
-
-    private boolean nameIsChanged(Category previous, Category current) {
-	return !previous.getName().equals(current.getName());
-    }
-
-    private void checkCategoryExists(Category c) throws BusinessException {
-	BusinessCheck.isNotNull(c, "La categoria no existe");
     }
 
 }

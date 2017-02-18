@@ -18,8 +18,6 @@ public class ListarCategoriasAction implements Accion {
     public String execute(HttpServletRequest request,
 	    HttpServletResponse response) {
 
-	String resultado = "EXITO";
-
 	List<Category> listaCategorias;
 
 	try {
@@ -33,15 +31,21 @@ public class ListarCategoriasAction implements Accion {
 	    Log.debug("Obtenida lista de categorías del usuario '%s' "
 		    + "conteniendo [%d] categorías", user.getLogin(),
 		    listaCategorias.size());
+
+	    return "EXITO";
+
 	}
 
 	catch (BusinessException b) {
+	    request.getSession().invalidate();
 	    Log.debug("Algo ha ocurrido obteniendo lista de categorías: %s",
 		    b.getMessage());
-	    resultado = "FRACASO";
+	    request.setAttribute("advertencia_usuario", "No se ha podido "
+	    	+ "listar las categorias del usuario");
+	    return "FRACASO";
+
 	}
 
-	return resultado;
     }
 
     @Override

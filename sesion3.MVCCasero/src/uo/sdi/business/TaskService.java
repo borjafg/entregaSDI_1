@@ -37,7 +37,7 @@ public interface TaskService {
 
     public List<Task> findTodayTasksByUserId(Long id) throws BusinessException;
 
-    public List<Task> findTasksByCategoryId(Long catId)
+    public List<Task> findTasksByCategoryIdOrderByCreationDate(Long catId)
 	    throws BusinessException;
 
     public List<Task> findUnfinishedTasksByCategoryId(Long id)

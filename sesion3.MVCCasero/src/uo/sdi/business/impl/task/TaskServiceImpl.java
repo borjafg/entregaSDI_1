@@ -15,7 +15,7 @@ import uo.sdi.business.impl.task.command.FindCategoriesByUserIdCommand;
 import uo.sdi.business.impl.task.command.MarkTaskAsFinishedCommand;
 import uo.sdi.business.impl.task.command.UpdateCategoryCommand;
 import uo.sdi.business.impl.task.command.UpdateTaskCommand;
-import uo.sdi.business.impl.task.command.findTasksByCategoryId;
+import uo.sdi.business.impl.task.command.FindTasksByCategoryIdOrderByCreationDate;
 import uo.sdi.model.Category;
 import uo.sdi.model.Task;
 import uo.sdi.persistence.CategoryFinder;
@@ -145,11 +145,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> findTasksByCategoryId(final Long id)
+    public List<Task> findTasksByCategoryIdOrderByCreationDate(final Long id)
 	    throws BusinessException {
 
 	return new CommandExecutor<List<Task>>()
-		.execute(new findTasksByCategoryId(id));
+		.execute(new FindTasksByCategoryIdOrderByCreationDate(id));
     }
 
     @Override

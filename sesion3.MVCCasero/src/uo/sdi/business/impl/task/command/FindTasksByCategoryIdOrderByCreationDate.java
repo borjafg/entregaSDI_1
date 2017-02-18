@@ -10,11 +10,12 @@ import uo.sdi.model.Category;
 import uo.sdi.model.Task;
 import uo.sdi.persistence.CategoryFinder;
 
-public class findTasksByCategoryId implements Command<List<Task>> {
+public class FindTasksByCategoryIdOrderByCreationDate implements
+	Command<List<Task>> {
 
     private Long id;
 
-    public findTasksByCategoryId(Long id) {
+    public FindTasksByCategoryIdOrderByCreationDate(Long id) {
 	this.id = id;
     }
 

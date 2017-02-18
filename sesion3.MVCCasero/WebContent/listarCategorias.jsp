@@ -12,7 +12,7 @@
 			<th>ID</th>
 			<th>Nombre</th>
 		</tr>
-		<c:forEach var="entry" items="${listaCategorias}" varStatus="i">
+		<c:forEach var="usuario" items="${request.listaUsuarios}" varStatus="i">
 			<tr id="item_${i.index}">
 				<td><a href="mostrarCategoria?id=${entry.id}">${entry.id}</a></td>
 				<td>${entry.name}</td>

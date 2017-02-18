@@ -29,11 +29,11 @@
 	<rol valorRol="USUARIO">
 		<opcion valorOpcion="validarse">
 			<resultado valorResultado="FRACASO" valorJSP="/login.jsp" />
-			<resultado valorResultado="EXITO" valorJSP="/principalUsuario.jsp" />
+			<resultado valorResultado="EXITO" valorJSP="/listarCategorias" />
 		</opcion>
 
-		<opcion valorOpcion="modificarDatos">
-			<resultado valorResultado="FRACASO" valorJSP="/principalUsuario.jsp" />
+		<opcion valorOpcion="listarCategorias">
+			<resultado valorResultado="FRACASO" valorJSP="/login.jsp" />
 			<resultado valorResultado="EXITO" valorJSP="/principalUsuario.jsp" />
 		</opcion>
 	</rol>
@@ -43,7 +43,26 @@
 	<!-- ==== Usuario administrador ==== -->
 	<!-- =============================== -->
 
-	<!-- <rol valorRol="ADMIN"> <opcion valorOpcion=""> <resultado valorResultado=""> 
-		<jsp valorJSP="" /> </resultado> </opcion> </rol> -->
+	<rol valorRol="ADMIN">
+		<opcion valorOpcion="validarse">
+			<resultado valorResultado="FRACASO" valorJSP="/login.jsp" />
+			<resultado valorResultado="EXITO" valorJSP="/listarUsuarios" />
+		</opcion>
+
+		<opcion valorOpcion="listarUsuarios">
+			<resultado valorResultado="FRACASO" valorJSP="/login.jsp" />
+			<resultado valorResultado="EXITO" valorJSP="/principalAdministrador.jsp" />
+		</opcion>
+
+		<opcion valorOpcion="cambiarEstadoUsuario">
+			<resultado valorResultado="FRACASO" valorJSP="/listarUsuarios" />
+			<resultado valorResultado="EXITO" valorJSP="/listarUsuarios" />
+		</opcion>
+
+		<opcion valorOpcion="borrarUsuario">
+			<resultado valorResultado="FRACASO" valorJSP="/listarUsuarios" />
+			<resultado valorResultado="EXITO" valorJSP="listarUsuarios" />
+		</opcion>
+	</rol>
 
 </mapa_navegacion>

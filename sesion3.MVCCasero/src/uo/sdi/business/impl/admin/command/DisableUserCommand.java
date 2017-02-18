@@ -18,7 +18,10 @@ public class DisableUserCommand implements Command<Void> {
     @Override
     public Void execute() throws BusinessException {
 	User user = UserFinder.findById(id);
+	
 	BusinessCheck.isNotNull(user, "El usuario no existe");
+	BusinessCheck.isTrue(user.getStatus().equals(UserStatus.ENABLED),
+		"El usuario ya estaba deshabilitado.");
 
 	user.setStatus(UserStatus.DISABLED); // Estado persistent
 

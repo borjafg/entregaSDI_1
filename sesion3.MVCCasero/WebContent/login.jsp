@@ -70,8 +70,6 @@
 			<%@ include file="jsp_util/mensaje_advertencia.jsp"%>
 		</div>
 
-		<br />
-
 		<div class="col-sm-offset-3">
 			<%@ include file="jsp_util/mensaje_exito.jsp"%>
 		</div>

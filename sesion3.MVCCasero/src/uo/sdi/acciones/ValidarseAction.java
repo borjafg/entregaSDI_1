@@ -71,8 +71,8 @@ public class ValidarseAction implements Accion {
 		session.setAttribute("advertencia_usuario", "El usuario o la "
 			+ "password indicada no son válidos");
 
-		Log.info("El usuario '%s' o la password indicada no son "
-			+ "válidos", login);
+		Log.info("El usuario '%s' no existe o la contraseña es "
+			+ "incorrecta", login);
 
 		return "EXITO";
 	    }
@@ -81,9 +81,11 @@ public class ValidarseAction implements Accion {
 	else {
 	    session.invalidate();
 
-	    Log.info("El usuario '%s' no está registrado", login);
+	    Log.info("El usuario '%s' no existe o la contraseña es "
+		    + "incorrecta", login);
+
 	    request.setAttribute("advertencia_usuario", "El usuario '" + login
-		    + "' no está registrado.");
+		    + "' no existe o la contraseña es incorrecta.");
 
 	    return "FRACASO";
 	}

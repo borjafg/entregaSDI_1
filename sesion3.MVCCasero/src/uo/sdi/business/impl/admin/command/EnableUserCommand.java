@@ -18,7 +18,10 @@ public class EnableUserCommand implements Command<Void> {
     @Override
     public Void execute() throws BusinessException {
 	User user = UserFinder.findById(id);
+
 	BusinessCheck.isNotNull(user, "El usuario no existe");
+	BusinessCheck.isTrue(user.getStatus().equals(UserStatus.DISABLED),
+		"El usuario ya estaba habilitado.");
 
 	user.setStatus(UserStatus.ENABLED); // estado persistent
 

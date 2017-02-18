@@ -78,7 +78,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 	    objetoAccion = buscarObjetoAccionParaAccionNavegador(rolAntes,
 		    accionNavegadorUsuario);
 
-	    request.removeAttribute("mensajeParaElUsuario");
+	    //borrarMensajesAnterioresUsuario(request);
 
 	    resultado = objetoAccion.execute(request, response);
 
@@ -197,5 +197,11 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 	return jspSiguiente;
     }
+
+    /*private void borrarMensajesAnterioresUsuario(HttpServletRequest request) {
+	request.removeAttribute("informacion_usuario");
+	request.removeAttribute("exito_usuario");
+	request.removeAttribute("advertencia_usuario");
+    }*/
 
 }

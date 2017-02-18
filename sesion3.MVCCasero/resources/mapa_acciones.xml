@@ -18,12 +18,19 @@
 
 	<rol valorRol="USUARIO">
 		<opcion valorOpcion="cerrarSesion" valorAccion="CerrarSesionAction" />
-		<opcion valorOpcion="modificarDatos" valorAccion="ModificarDatosAction" />
+		<opcion valorOpcion="listarCategorias" valorAccion="ListarCategoriasAction" />
 	</rol>
 
 
 	<!-- =============================== -->
 	<!-- ==== Usuario administrador ==== -->
 	<!-- =============================== -->
+
+	<rol valorRol="ADMIN">
+		<opcion valorOpcion="cerrarSesion" valorAccion="CerrarSesionAction" />
+		<opcion valorOpcion="listarUsuarios" valorAccion="ListarUsuariosAction" />
+		<opcion valorOpcion="cambiarEstadoUsuario" valorAccion="CambiarEstadoUsuarioAction" />
+		<opcion valorOpcion="borrarUsuario" valorAccion="BorrarUsuarioAction" />
+	</rol>
 
 </mapa_acciones>

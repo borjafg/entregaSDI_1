@@ -66,11 +66,13 @@
 		<!-- Pie de página (Posibles mensajes de error o de información) -->
 		<!-- =========================================================== -->
 
-		<div class="col-sm-offset-3">
+		<br />
+
+		<div>
 			<%@ include file="jsp_util/mensaje_advertencia.jsp"%>
 		</div>
 
-		<div class="col-sm-offset-3">
+		<div class="col-sm-offset-3 col-xs-3">
 			<%@ include file="jsp_util/mensaje_exito.jsp"%>
 		</div>
 	</div>

@@ -61,7 +61,7 @@
 
 		<opcion valorOpcion="borrarUsuario">
 			<resultado valorResultado="FRACASO" valorJSP="/listarUsuarios" />
-			<resultado valorResultado="EXITO" valorJSP="listarUsuarios" />
+			<resultado valorResultado="EXITO" valorJSP="/listarUsuarios" />
 		</opcion>
 	</rol>
 

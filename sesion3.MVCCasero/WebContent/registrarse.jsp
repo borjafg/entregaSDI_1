@@ -85,7 +85,9 @@
 		<!-- Pie de página (Posibles mensajes de error) -->
 		<!-- ========================================== -->
 
-		<div class="col-sm-offset-3">
+		<br />
+
+		<div>
 			<%@ include file="jsp_util/mensaje_advertencia.jsp"%>
 		</div>
 	</div>

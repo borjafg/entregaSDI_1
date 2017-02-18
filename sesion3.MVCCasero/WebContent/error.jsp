@@ -10,11 +10,12 @@
 <body>
 	<div class="container-fluid">
 		<h1>Ha ocurrido un error al procesar su petición</h1>
-		<br /> <br />
+		<br />
 		<p>
 			<strong>Error irrecuperable</strong>: contacte con el responsable de
-			la aplicación
+			la aplicación.
 		</p>
+		<br /> <a href="/login.jsp">Volver a la página de login</a>
 	</div>
 </body>
 </html>

@@ -3,6 +3,7 @@ package uo.sdi.acciones;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import alb.util.log.Log;
 import uo.sdi.acciones.util.LongUtil;
 import uo.sdi.business.AdminService;
 import uo.sdi.business.Services;
@@ -19,6 +20,9 @@ public class CambiarEstadoUsuarioAction implements Accion {
 	Long idUser = validarParametros(opcion, id);
 
 	if (idUser == null) {
+	    Log.debug("No se ha podido borrar un usuario porque faltaba algún "
+		    + "parámetro en la petición");
+
 	    request.setAttribute("advertencia_usuario",
 		    "No se ha podido cambiar el estado del usuario");
 
@@ -32,12 +36,20 @@ public class CambiarEstadoUsuarioAction implements Accion {
 
 		if (opcion.equals("habilitar")) {
 		    admServ.enableUser(idUser);
-		    resultado = "Se ha cambiado el estado del usuario";
+
+		    Log.debug("Se ha habilitado la cuenta del usuario con id "
+			    + "[%d]", idUser);
+
+		    resultado = "Se ha habilitado el usuario";
 		}
 
 		else {
 		    admServ.disableUser(idUser);
-		    resultado = "Se ha cambiado el estado del usuario";
+
+		    Log.debug("Se ha deshabilitado la cuenta del usuario con "
+			    + "id [%d]", idUser);
+
+		    resultado = "Se ha deshabilitado el estado del usuario";
 		}
 
 		request.setAttribute("exito_usuario", resultado);

@@ -22,7 +22,7 @@ public class RegistrarseAction implements Accion {
 	    UserService userServc = Services.getUserService();
 	    userServc.registerUser(login, email, password1, password2);
 
-	    request.setAttribute("mensajeParaElUsuario", "El registro se ha "
+	    request.setAttribute("exito_ususario", "El registro se ha "
 		    + "completado");
 
 	    return "EXITO"; // No se loguea automáticamente

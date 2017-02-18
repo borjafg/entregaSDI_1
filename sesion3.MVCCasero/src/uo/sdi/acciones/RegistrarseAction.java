@@ -29,7 +29,7 @@ public class RegistrarseAction implements Accion {
 	}
 
 	catch (BusinessException be) {
-	    request.setAttribute("mensajeParaElUsuario", be.getMessage());
+	    request.setAttribute("advertencia_usuario", be.getMessage());
 
 	    return "FRACASO";
 	}

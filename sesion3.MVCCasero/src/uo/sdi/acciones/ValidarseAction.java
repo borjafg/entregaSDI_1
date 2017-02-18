@@ -50,7 +50,7 @@ public class ValidarseAction implements Accion {
 
 	    Log.debug("Algo ha ocurrido intentando iniciar sesión [%s]: %s",
 		    login, b.getMessage());
-	    request.setAttribute("mensajeParaElUsuario", b.getMessage());
+	    request.setAttribute("advertencia_usuario", b.getMessage());
 
 	    return "FRACASO";
 	}
@@ -68,7 +68,7 @@ public class ValidarseAction implements Accion {
 	    else {
 		session.setAttribute("user", userByLogin);
 
-		session.setAttribute("mensajeParaElUsuario", "El usuario o la "
+		session.setAttribute("advertencia_usuario", "El usuario o la "
 			+ "password indicada no son válidos");
 
 		Log.info("El usuario '%s' o la password indicada no son "
@@ -82,7 +82,7 @@ public class ValidarseAction implements Accion {
 	    session.invalidate();
 
 	    Log.info("El usuario '%s' no está registrado", login);
-	    request.setAttribute("mensajeParaElUsuario", "El usuario '" + login
+	    request.setAttribute("advertencia_usuario", "El usuario '" + login
 		    + "' no está registrado.");
 
 	    return "FRACASO";
@@ -97,7 +97,7 @@ public class ValidarseAction implements Accion {
 		"Se ha intentado iniciar sesión como [%s] teniendo la sesión iniciada como [%s]",
 		login, ((User) session.getAttribute("user")).getLogin());
 
-	request.setAttribute("mensajeParaElUsuario",
+	request.setAttribute("advertencia_usuario",
 		"Se ha intentado iniciar sesión como '" + login
 			+ "' teniendo la sesión iniciada como '"
 			+ ((User) session.getAttribute("user")).getLogin()

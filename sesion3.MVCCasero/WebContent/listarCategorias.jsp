@@ -19,6 +19,5 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<%@ include file="jsp_util/pieDePagina.jsp"%>
 </body>
 </html>

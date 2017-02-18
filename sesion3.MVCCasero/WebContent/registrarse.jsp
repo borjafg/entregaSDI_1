@@ -15,15 +15,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#barraNavegacion">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-
-				<a class="navbar-brand" href="#">Task Manager</a>
-			</div>
+			<%@ include file="jsp_util/titulo_barra_navegacion.jsp"%>
 
 			<div id="barraNavegacion" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -93,7 +85,9 @@
 		<!-- Pie de página (Posibles mensajes de error) -->
 		<!-- ========================================== -->
 
-		<%@ include file="jsp_util/pieDePagina.jsp"%>
+		<div class="col-sm-offset-3">
+			<%@ include file="jsp_util/mensaje_advertencia.jsp"%>
+		</div>
 	</div>
 
 </body>

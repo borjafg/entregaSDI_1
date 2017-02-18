@@ -1,7 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="jsp_util/comprobarNavegacion.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <title>TaskManager - Página principal del usuario</title>
@@ -44,6 +44,8 @@
 	<br />
 	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
 
-	<%@ include file="jsp_util/pieDePagina.jsp"%>
+	<div>
+		<%@ include file="jsp_util/mensaje_advertencia.jsp"%>
+	</div>
 </body>
 </html>

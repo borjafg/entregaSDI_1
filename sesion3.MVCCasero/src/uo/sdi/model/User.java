@@ -132,10 +132,6 @@ public class User {
 	return isAdmin;
     }
 
-    public void setIsAdmin(Boolean isAdmin) {
-	this.isAdmin = isAdmin;
-    }
-
     public UserStatus getStatus() {
 	return status;
     }

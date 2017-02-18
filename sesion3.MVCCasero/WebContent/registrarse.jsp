@@ -27,7 +27,7 @@
 
 			<div id="barraNavegacion" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="registrarse.jsp">registrarse</a></li>
+					<li><a href="login.jsp">iniciar sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -41,7 +41,7 @@
 		<h1 class="col-sm-offset-3">Inicie sesión</h1>
 		<br />
 
-		<form action="validarse" method="post" name="validarse_form"
+		<form action="registrarse" method="post" name="registrarse_form"
 			class="form-horizontal">
 
 			<div class="form-group">
@@ -55,11 +55,30 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-xs-3" for="campoPassword">Contraseña:</label>
+				<label class="control-label col-xs-3" for="campoEmail">Email:</label>
 
 				<div class="col-xs-5">
-					<input type="password" class="form-control" id="campoPassword"
-						placeholder="Escriba su contraseña" name="password" required />
+					<input type="email" class="form-control" id="campoEmail"
+						placeholder="Escriba su email" name="email" required />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-xs-3" for="campoPassword1">Contraseña:</label>
+
+				<div class="col-xs-5">
+					<input type="password" class="form-control" id="campoPassword1"
+						placeholder="Escriba su contraseña" name="password1" required />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-xs-3" for="campoPassword2">Repita
+					la contraseña:</label>
+
+				<div class="col-xs-5">
+					<input type="password" class="form-control" id="campoPassword2"
+						placeholder="Repita la contraseña" name="password2" required />
 				</div>
 			</div>
 

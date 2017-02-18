@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import uo.sdi.acciones.Accion;
 import uo.sdi.model.User;
-import uo.sdi.servlets.util.InicializadorMapas;
-import uo.sdi.servlets.util.InicializadorMapasJAVA;
+import uo.sdi.servlets.exception.InitializationException;
+import uo.sdi.servlets.util.InicializadorMapasXML;
 import alb.util.log.Log;
 
 public class Controlador extends javax.servlet.http.HttpServlet {
@@ -34,10 +34,25 @@ public class Controlador extends javax.servlet.http.HttpServlet {
      * 
      */
     public void init() throws ServletException {
-	InicializadorMapas init = new InicializadorMapasJAVA();
+	try {
+	    InicializadorMapasXML init = new InicializadorMapasXML();
 
-	mapaDeAcciones = init.crearMapaAcciones();
-	mapaDeNavegacion = init.crearMapaDeNavegacion();
+	    mapaDeAcciones = init.crearMapaAcciones();
+	    Log.debug("Se ha inicializado correctamente el mapa de acciones "
+		    + "desde un fichero XML");
+
+	    mapaDeNavegacion = init.crearMapaDeNavegacion();
+	    Log.debug("Se ha inicializado correctamente el mapa de navegación "
+		    + "desde un fichero XML");
+	}
+
+	catch (InitializationException ex) {
+	    Log.error("No se ha podido inicializar el controlador.");
+	    Log.error("Causa del error: [" + ex.getMessage() + "]");
+
+	    throw new ServletException("No se ha podido inicializar el "
+		    + "servlet \"Controlador\".");
+	}
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res)

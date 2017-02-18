@@ -5,7 +5,8 @@ import uo.sdi.model.User;
 
 public interface UserService {
 
-    public Long registerUser(User user) throws BusinessException;
+    public void registerUser(String login, String email, String password1,
+	    String password2) throws BusinessException;
 
     public void updateUserDetails(User user) throws BusinessException;
 

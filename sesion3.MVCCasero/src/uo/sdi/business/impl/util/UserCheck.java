@@ -10,28 +10,28 @@ import uo.sdi.persistence.UserFinder;
 public class UserCheck {
 
     public static void isNotAdmin(User user) throws BusinessException {
-	String check = "A new admin cannot be registered";
+	String check = "Un nuevo admin no puede ser registrado";
 	BusinessCheck.isFalse(user.getIsAdmin(), check);
     }
 
     public static void isValidEmailSyntax(User user) throws BusinessException {
-	String check = "Not a valid email";
+	String check = "El email no es válido";
 	BusinessCheck.isTrue(isValidEmail(user.getEmail()), check);
     }
 
     public static void minLoginLength(User user) throws BusinessException {
-	String check = "The login must be at least 3 chars long";
+	String check = "El login debe tener 3 caracteres como mínimo";
 	BusinessCheck.isTrue(user.getLogin().length() >= 3, check);
     }
 
     public static void minPasswordLength(User user) throws BusinessException {
-	String check = "The password must be at least 6 chars long";
+	String check = "La contraseña debe tener al menos 6 caracteres";
 	BusinessCheck.isTrue(user.getPassword().length() >= 6, check);
     }
 
     public static void notRepeatedLogin(User user) throws BusinessException {
 	User u = UserFinder.findByLogin(user.getLogin());
-	BusinessCheck.isNull(u, "The login is already used");
+	BusinessCheck.isNull(u, "Ese login ya está registrado");
     }
 
     private static boolean isValidEmail(String email) {

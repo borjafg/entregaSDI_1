@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapa_acciones>
+<mapa_acciones>
+
+	<!-- ========================= -->
+	<!-- ==== Usuario Anónimo ==== -->
+	<!-- ========================= -->
+
+	<rol valorRol="ANONIMO">
+		<opcion valorOpcion="validarse" valorAccion="ValidarseAction" />
+		<opcion valorOpcion="registrarse" valorAccion="RegistrarseAction" />
+	</rol>
+
+
+	<!-- ============================ -->
+	<!-- ==== Usuario registrado ==== -->
+	<!-- ============================ -->
+
+	<rol valorRol="USUARIO">
+		<opcion valorOpcion="cerrarSesion" valorAccion="CerrarSesionAction" />
+		<opcion valorOpcion="modificarDatos" valorAccion="ModificarDatosAction" />
+	</rol>
+
+
+	<!-- =============================== -->
+	<!-- ==== Usuario administrador ==== -->
+	<!-- =============================== -->
+
+</mapa_acciones>

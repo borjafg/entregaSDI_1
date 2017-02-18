@@ -11,11 +11,11 @@ import uo.sdi.model.User;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public Long registerUser(User user) throws BusinessException {
-	User usuario = new CommandExecutor<User>()
-		.execute(new RegisterUserCommand(user));
+    public void registerUser(String login, String email, String password1,
+	    String password2) throws BusinessException {
 
-	return usuario.getId();
+	new CommandExecutor<Void>().execute(new RegisterUserCommand(login,
+		email, password1, password2));
     }
 
     @Override

@@ -8,9 +8,16 @@
 
 	<rol valorRol="ANONIMO">
 		<opcion valorOpcion="validarse">
-			<resultado valorResultado="FRACASO">
-				<jsp valorJSP="/login.jsp" />
-			</resultado>
+			<resultado valorResultado="FRACASO" valorJSP="/login.jsp" />
+		</opcion>
+
+		<opcion valorOpcion="registrarse">
+			<resultado valorResultado="FRACASO" valorJSP="/registrarse.jsp" />
+			<resultado valorResultado="EXITO" valorJSP="/login.jsp" />
+		</opcion>
+
+		<opcion valorOpcion="cerrarSesion">
+			<resultado valorResultado="EXITO" valorJSP="/login.jsp" />
 		</opcion>
 	</rol>
 
@@ -21,19 +28,13 @@
 
 	<rol valorRol="USUARIO">
 		<opcion valorOpcion="validarse">
-			<resultado valorResultado="FRACASO">
-				<jsp valorJSP="/login.jsp" />
-			</resultado>
+			<resultado valorResultado="FRACASO" valorJSP="/login.jsp" />
+			<resultado valorResultado="EXITO" valorJSP="/principalUsuario.jsp" />
 		</opcion>
 
 		<opcion valorOpcion="modificarDatos">
-			<resultado valorResultado="EXITO">
-				<jsp valorJSP="/principalUsuario.jsp" />
-			</resultado>
-
-			<resultado valorResultado="FRACASO">
-				<jsp valorJSP="/principalUsuario.jsp" />
-			</resultado>
+			<resultado valorResultado="FRACASO" valorJSP="/principalUsuario.jsp" />
+			<resultado valorResultado="EXITO" valorJSP="/principalUsuario.jsp" />
 		</opcion>
 	</rol>
 
@@ -42,12 +43,7 @@
 	<!-- ==== Usuario administrador ==== -->
 	<!-- =============================== -->
 
-	<rol valorRol="ADMIN">
-		<opcion valorOpcion="">
-			<resultado valorResultado="">
-				<jsp valorJSP="" />
-			</resultado>
-		</opcion>
-	</rol>
+	<!-- <rol valorRol="ADMIN"> <opcion valorOpcion=""> <resultado valorResultado=""> 
+		<jsp valorJSP="" /> </resultado> </opcion> </rol> -->
 
 </mapa_navegacion>

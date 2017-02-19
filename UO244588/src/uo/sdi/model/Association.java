@@ -1,5 +1,7 @@
 package uo.sdi.model;
 
+import alb.util.log.Log;
+
 // Clase con ocultacion de paquete (sólo la usan
 // las clases del modelo de dominio). Gestiona
 // las asociaciones entre esas clases.
@@ -14,11 +16,11 @@ class Association {
 
 	static void link(User user, Category category) {
 	    category._setUser(user);
-	    user.getCategories().add(category);
+	    user._getCategories().add(category);
 	}
 
-	static void unlink(User user, Category category) {
-	    user.getCategories().remove(category);
+	static void unlink(User user, Category category) {	    
+	    user._getCategories().remove(category);
 	    category._setUser(null);
 	}
 
@@ -49,13 +51,13 @@ class Association {
     static class Classifies {
 
 	static void link(Task task, Category category) {
-	    task.setCategory(category);
+	    task._setCategory(category);
 	    category._getTasks().add(task);
 	}
 
 	static void unlink(Task task, Category category) {
 	    category._getTasks().remove(task);
-	    task.setCategory(null);
+	    task._setCategory(null);
 	}
 
     }

@@ -21,9 +21,9 @@
 		
 		<opcion valorOpcion="listarCategorias" valorAccion="ListarCategoriasAction" />
 		<opcion valorOpcion="nuevaCategoria" valorAccion="NuevaCategoriaAction" />
-		<!--<opcion valorOpcion="renombrarCategoria" valorAccion="RenombrarCategoriaAction"/>-->
-		<!--<opcion valorOpcion="eliminarCategoria" valorAccion="EliminarCategoriaAction" />-->
-		<!--<opcion valorOpcion="duplicarCategoria" valorAccion="DuplicarCategoriaAction">-->
+		<opcion valorOpcion="renombrarCategoria" valorAccion="RenombrarCategoriaAction"/>
+		<opcion valorOpcion="eliminarCategoria" valorAccion="EliminarCategoriaAction" />
+		<opcion valorOpcion="duplicarCategoria" valorAccion="DuplicarCategoriaAction"/>
 		
 		<opcion valorOpcion="listarTareas" valorAccion="ListarTareasAction"/>
 		<!--<opcion valorOpcion="nuevaTarea" valorAccion="NuevaTareaAction" />-->

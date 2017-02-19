@@ -32,10 +32,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserStatus status = UserStatus.ENABLED;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval=true)
     private Set<Category> categories = new HashSet<Category>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval=true)
     private Set<Task> tasks = new HashSet<Task>();
 
     User() {
@@ -61,14 +61,14 @@ public class User {
      *             el usuario no tiene asignada esa tarea
      * 
      */
-    public void desvincularTarea(Task tarea) throws BusinessException {
+    public void eliminarTarea(Task tarea) throws BusinessException {
 	if (!tasks.contains(tarea)) {
 	    throw new BusinessException("El usuario no tiene asignada esa "
 		    + "tarea.");
 	}
 
 	Association.Classifies.unlink(tarea, tarea.getCategory());
-	Association.Perform.unlink(this, tarea);
+	tasks.remove(tarea);
     }
 
     /**
@@ -84,7 +84,7 @@ public class User {
      *             eliminadas)
      * 
      */
-    public void desvincularCategoria(Category categoria)
+    public void eliminarCategoria(Category categoria)
 	    throws BusinessException {
 
 	if (!categories.contains(categoria)) {
@@ -96,7 +96,7 @@ public class User {
 		    + "que tiene tareas asociadas.");
 	}
 
-	Association.Organizes.unlink(this, categoria);
+	categories.remove(categoria);
     }
 
     // =============================

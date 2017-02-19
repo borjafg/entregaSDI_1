@@ -16,7 +16,7 @@ public interface TaskService {
 
     public void updateCategory(Long id, String name) throws BusinessException;
 
-    public void deleteCategory(Long id) throws BusinessException;
+    public void deleteCategory(Long idCategory,Long idUser) throws BusinessException;
 
     public Category findCategoryById(Long id) throws BusinessException;
 

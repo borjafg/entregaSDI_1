@@ -49,8 +49,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteCategory(Long catId) throws BusinessException {
-	new CommandExecutor<Void>().execute(new DeleteCategoryCommand(catId));
+    public void deleteCategory(Long catId,Long idUser) throws BusinessException {
+	new CommandExecutor<Void>().execute(new DeleteCategoryCommand(catId, idUser));
     }
 
     @Override

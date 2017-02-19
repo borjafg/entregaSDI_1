@@ -72,6 +72,7 @@ public class DuplicateCategoryCommand implements Command<Category> {
 
 	Jpa.getManager().persist(categCopy);
 
+
 	return categCopy;
     }
 

@@ -72,11 +72,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Long createTask(String name, boolean forToday, Long idUser)
-	    throws BusinessException {
+    public Long createTask(String name, boolean forToday, Long idUser,
+	    Long idCateg) throws BusinessException {
 
 	Task tarea = new CommandExecutor<Task>().execute(new CreateTaskCommand(
-		name, forToday, idUser));
+		name, forToday, idUser, idCateg));
 
 	return tarea.getId();
     }

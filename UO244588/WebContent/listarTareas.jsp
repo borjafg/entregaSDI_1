@@ -11,8 +11,6 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 
@@ -26,7 +24,6 @@
 		</div>
 	</nav>
 
-
 	<div class="container" style="margin-top: 50px">
 		<h1 class="text-center">Lista de tareas</h1>
 		<br />
@@ -34,6 +31,45 @@
 		<%@ include file="jsp_util/mensaje_advertencia.jsp"%>
 		<%@ include file="jsp_util/mensaje_exito.jsp"%>
 
+		<br />
+
+		<div class="panel panel-default">
+			<div class="panel-heading">Añadir una nueva tarea</div>
+			<div class="panel-body">
+				<c:choose>
+					<c:when test="${CategoriaSistema == 'NO' }">
+						<form
+							action="nuevaTarea?CategoriaSistema=${CategoriaSistema}&idCategoria=${idCategoria}">
+
+							<div class="form-group">
+								<label for="nombreTarea">Nombre de la tarea</label> <input
+									type="text" class="form-control" id="nombreTarea"
+									name="nombreTarea" placeholder="Escriba el nombre de la tarea">
+							</div>
+
+							<input type="submit" value="Crear nueva tarea"
+								class="btn btn-primary" />
+						</form>
+					</c:when>
+					<c:otherwise>
+						<%-- Categoria del sistema == 'SI' --%>
+						<form
+							action="nuevaTarea?id=${tarea.id}&CategoriaSistema=${CategoriaSistema}&nombreCategoria=${nombreCategoria}">
+
+							<div class="form-group">
+								<label for="nombreTarea">Nombre de la tarea</label> <input
+									type="text" class="form-control" id="nombreTarea"
+									name="nombreTarea" placeholder="Escriba el nombre de la tarea">
+							</div>
+
+							<input type="submit" value="Crear nueva tarea"
+								class="btn btn-primary" />
+						</form>
+					</c:otherwise>
+				</c:choose>
+			</div>
+
+		</div>
 
 		<br />
 		<table class="table table-striped table-bordered table-hover">
@@ -45,6 +81,7 @@
 				<th>Fecha finalizada</th>
 				<th>Finalizar tarea</th>
 			</tr>
+
 			<c:forEach var="tarea" items="${listaTareas}">
 				<tr>
 					<td><a href="TareaPrincipal?id=${tarea.id}">${tarea.title}</a></td>
@@ -59,8 +96,6 @@
 					<td><fmt:formatDate pattern="dd/MM/yyyy"
 							value="${tarea.created}" /></td>
 
-
-
 					<c:choose>
 						<c:when test="${empty tarea.planned}">
 							<td>------</td>
@@ -71,10 +106,6 @@
 
 						</c:otherwise>
 					</c:choose>
-
-
-
-
 
 					<c:choose>
 						<c:when test="${empty tarea.finished}">
@@ -103,7 +134,6 @@
 								</c:choose></td>
 						</c:otherwise>
 					</c:choose>
-
 				</tr>
 			</c:forEach>
 		</table>

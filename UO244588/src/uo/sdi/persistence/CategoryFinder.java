@@ -33,4 +33,10 @@ public class CategoryFinder {
 	}
     }
 
+    public static List<Category> findByUserId(Long id) {
+	return Jpa.getManager()
+		.createNamedQuery("Category.findByUserId", Category.class)
+		.setParameter("userId", id).getResultList();
+    }
+
 }

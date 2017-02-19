@@ -19,6 +19,11 @@
 			c.name = :name</query>
 	</named-query>
 
+	<named-query name="Category.findByUserId">
+		<query>select c from Category c where
+			c.user.id = :userId</query>
+	</named-query>
+
 
 	<!-- ============== -->
 	<!-- Consultas Task -->

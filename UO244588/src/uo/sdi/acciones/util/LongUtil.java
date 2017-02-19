@@ -1,9 +1,5 @@
 package uo.sdi.acciones.util;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 08c59578178029b6c882960bb1af6f29f8afafe9
 public class LongUtil {
 
     private LongUtil() {

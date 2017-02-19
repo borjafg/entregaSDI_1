@@ -1,13 +1,11 @@
 package uo.sdi.business.impl.task.command.util;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import alb.util.date.DateUtil;
 import uo.sdi.model.Task;
+import alb.util.date.DateUtil;
 
 public class OrdenationBy {
 

@@ -1,6 +1,5 @@
 package uo.sdi.business.impl.task.command;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import uo.sdi.business.exception.BusinessCheck;
@@ -8,6 +7,7 @@ import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.impl.command.Command;
 import uo.sdi.model.Category;
 import uo.sdi.model.User;
+import uo.sdi.persistence.CategoryFinder;
 import uo.sdi.persistence.UserFinder;
 
 public class FindCategoriesByUserIdCommand implements Command<List<Category>> {
@@ -24,7 +24,7 @@ public class FindCategoriesByUserIdCommand implements Command<List<Category>> {
 
 	BusinessCheck.isNotNull(userId, "El usuario no existe");
 
-	return new ArrayList<Category>(user.getCategories());
+	return CategoryFinder.findByUserId(user.getId());
     }
 
 }

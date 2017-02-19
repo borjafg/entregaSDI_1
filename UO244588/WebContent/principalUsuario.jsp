@@ -49,10 +49,17 @@
 				<td id="status"><jsp:getProperty property="status" name="user" /></td>
 			</tr>
 		</table>
-		<br /> <br />
+		<br />
 
+		<div>
+			<%@ include file="jsp_util/mensaje_advertencia.jsp"%>
+		</div>
 
+		<div>
+			<%@ include file="jsp_util/mensaje_exito.jsp"%>
+		</div>
 
+		<br />
 		<div class="panel panel-default">
 			<div class="panel-heading">Categorias del sistema</div>
 			<div class="panel-body">
@@ -91,7 +98,6 @@
 		</div>
 
 
-
 		<form action="nuevaCategoria" method="post" name="nuevaCategoria_form"
 			class="form-horizontal">
 			<div class="form-group">
@@ -103,12 +109,9 @@
 						name="nombreCategoriaNueva" required />
 				</div>
 
-
 				<input type="submit" value="Crear categoria" class="btn btn-primary" />
 			</div>
 		</form>
-
-
 
 
 		<div class="panel panel-default">
@@ -143,16 +146,11 @@
 								onclick="return confirm('Eliminar categoria')"
 								href="eliminarCategoria?idCategoria=${categoria.id}">eliminar</a></td>
 
-
 						</tr>
 					</c:forEach>
 				</table>
 
 			</div>
-		</div>
-
-		<div>
-			<%@ include file="jsp_util/mensaje_advertencia.jsp"%>
 		</div>
 	</div>
 </body>

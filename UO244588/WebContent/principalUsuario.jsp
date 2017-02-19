@@ -38,16 +38,8 @@
 		<jsp:useBean id="user" class="uo.sdi.model.User" scope="session" />
 		<table>
 			<tr>
-				<td>Id:</td>
-				<td id="id"><jsp:getProperty property="id" name="user" /></td>
-			</tr>
-			<tr>
 				<td>Email:</td>
-				<td id="email"><form action="modificarDatos" method="POST">
-						<input type="text" name="email" size="15"
-							value="<jsp:getProperty property="email" name="user"/>">
-						<input type="submit" value="Modificar">
-					</form></td>
+				<td id="email"><jsp:getProperty property="email" name="user" /></td>
 			</tr>
 			<tr>
 				<td>Login:</td>
@@ -78,11 +70,42 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Categorias del usuario</div>
 			<div class="panel-body">
-				<c:forEach var="categoria" items="${listaCategorias}">
-					<li><a
-						href="listarTareas?CategoriaSistema=NO&Id=${categoria.id}">
-							${categoria.name}</a></li>
-				</c:forEach>
+
+				<table class="table table-striped table-bordered table-hover">
+					<tr>
+						<th>Nombre categoria</th>
+						<th>Listar tareas</th>
+						<th>Eliminar categoria</th>
+					</tr>
+					<c:forEach var="categoria" items="${listaCategorias}">
+						<tr>
+							<td>
+								<form action="renombrarCategoria" method="post"
+									name="renombrar_form" class="form-horizontal">
+									<div class="col-xs-5">
+
+										<input type="text" class="form-control"
+											id="Categoria${categoria.id}" name="nombreCategoria"
+											value="${categoria.name}" required />
+
+												<input type="submit" value="Renombrar"
+													class="btn btn-primary" />
+									</div>
+
+								</form>
+							</td>
+							<td><a
+								href="listarTareas?CategoriaSistema=NO&Id=${categoria.id}">
+									tareas</a></td>
+							<td class="danger">
+								<a onclick="return confirm('Eliminar categoria')" href="eliminarCategoria?id=${categoria.id}">eliminar</a>
+							</td>
+						
+						
+						</tr>
+					</c:forEach>
+				</table>
+
 			</div>
 		</div>
 

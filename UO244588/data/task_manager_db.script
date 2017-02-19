@@ -51,8 +51,8 @@ GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.CHARACTER_DATA TO PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.SQL_IDENTIFIER TO PUBLIC
 GRANT DBA TO SA
 SET SCHEMA PUBLIC
-INSERT INTO TUSERS VALUES(1,'mary@mail.com',FALSE,'mary','mary123','DISABLED')
-INSERT INTO TUSERS VALUES(2,'john@mail.com',FALSE,'john','john123','DISABLED')
+INSERT INTO TUSERS VALUES(1,'mary@mail.com',FALSE,'mary','mary123','ENABLED')
+INSERT INTO TUSERS VALUES(2,'john@mail.com',FALSE,'john','john123','ENABLED')
 INSERT INTO TUSERS VALUES(3,'ian@mail.com',FALSE,'ian','ian123','ENABLED')
 INSERT INTO TUSERS VALUES(4,'me@system.gtd',TRUE,'admin','admin123','ENABLED')
 INSERT INTO TTASKS VALUES(1,'Aenean vehicula mattis dui. Praesent vel risus sed tellus aliquet aliquam. Integer bibendum eros lorem, ut feugiat justo luctus eu. Praesent pharetra tincidunt scelerisque. ','2017-02-02 00:00:24.000000','2017-02-11','2017-02-11','Task 0 for category Personal projects',3,1)

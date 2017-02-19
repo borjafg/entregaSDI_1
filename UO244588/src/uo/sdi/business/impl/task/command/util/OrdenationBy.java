@@ -47,7 +47,7 @@ public class OrdenationBy {
 	 *            asignación
 	 * @return la lista ordenada (List<Task>) según su fecha de asignación
 	 */
-	public static List<Task> orderByProvidedDate(
+	public static List<Task> orderByPlannedDate(
 			List<Task> listaTareasNoOrdenadas) {
 
 		Collections.sort(listaTareasNoOrdenadas, new Comparator<Task>() {

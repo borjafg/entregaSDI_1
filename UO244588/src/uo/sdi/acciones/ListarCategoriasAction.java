@@ -21,7 +21,7 @@ public class ListarCategoriasAction implements Accion {
 	List<Category> listaCategorias;
 
 	try {
-	    User user = (User) request.getAttribute("user");
+	    User user = (User) request.getSession().getAttribute("user");
 
 	    TaskService taskService = Services.getTaskService();
 

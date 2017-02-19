@@ -32,8 +32,7 @@
 
 		<i>Iniciaste sesión el <fmt:formatDate
 				pattern="dd-MM-yyyy' a las 'HH:mm"
-				value="${sessionScope.fechaInicioSesion}" /> (usuario número
-			${contador})
+				value="${sessionScope.fechaInicioSesion}" />
 		</i> <br /> <br />
 		<jsp:useBean id="user" class="uo.sdi.model.User" scope="session" />
 		<table>
@@ -52,21 +51,6 @@
 		</table>
 		<br /> <br />
 
-		<form action="nuevaCategoria" method="post" name="nuevaCategoria_form"
-			class="form-horizontal">
-			<div class="form-group">
-				<label class="control-label col-xs-5" for="nombreCategoriaNueva">Nombre
-					de la nueva categoria :</label>
-				<div class="col-xs-5">
-					<input type="text" class="form-control" id="nombreCategoriaNueva"
-						placeholder="Escriba el nombre de la nueva categoria" name="login"
-						required />
-				</div>
-			
-			
-				<input type="submit" value="Crear categoria" class="btn btn-primary" />
-			</div>
-		</form>
 
 
 		<div class="panel panel-default">
@@ -106,6 +90,27 @@
 
 		</div>
 
+
+
+		<form action="nuevaCategoria" method="post" name="nuevaCategoria_form"
+			class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-xs-5" for="nombreCategoriaNueva">Nombre
+					de la nueva categoria :</label>
+				<div class="col-xs-5">
+					<input type="text" class="form-control" id="nombreCategoriaNueva"
+						placeholder="Escriba el nombre de la nueva categoria"
+						name="nombreCategoriaNueva" required />
+				</div>
+
+
+				<input type="submit" value="Crear categoria" class="btn btn-primary" />
+			</div>
+		</form>
+
+
+
+
 		<div class="panel panel-default">
 			<div class="panel-heading">Categorias del usuario</div>
 			<div class="panel-body">
@@ -132,11 +137,11 @@
 								</form>
 							</td>
 							<td><a
-								href="listarTareas?CategoriaSistema=NO&Id=${categoria.id}">
+								href="listarTareas?CategoriaSistema=NO&idCategoria=${categoria.id}">
 									tareas</a></td>
 							<td class="danger"><a
 								onclick="return confirm('Eliminar categoria')"
-								href="eliminarCategoria?id=${categoria.id}">eliminar</a></td>
+								href="eliminarCategoria?idCategoria=${categoria.id}">eliminar</a></td>
 
 
 						</tr>

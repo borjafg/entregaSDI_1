@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import alb.util.date.DateUtil;
+
 @Entity
 @Table(name = "TCategories")
 public class Category {
@@ -25,7 +27,7 @@ public class Category {
     private String name;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    private Date created = DateUtil.now();
 
     @ManyToOne
     private User user;
@@ -68,8 +70,8 @@ public class Category {
 	return name;
     }
 
-    public String setName(String name) {
-	return name;
+    public void setName(String name) {
+	this.name= name;
     }
 
     public Date getCreated() {

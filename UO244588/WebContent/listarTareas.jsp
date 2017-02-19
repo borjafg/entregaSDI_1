@@ -42,6 +42,7 @@
 				<th>Categoria</th>
 				<th>Fecha de creación</th>
 				<th>Fecha planeada</th>
+				<th>Fecha finalizada</th>
 				<th>Finalizar tarea</th>
 			</tr>
 			<c:forEach var="tarea" items="${listaTareas}">
@@ -55,18 +56,54 @@
 							<td>${tarea.category.name}</td>
 						</c:otherwise>
 					</c:choose>
-					<td><fmt:formatDate pattern="dd/MM/yyyy" value="${tarea.created}"/></td>
+					<td><fmt:formatDate pattern="dd/MM/yyyy"
+							value="${tarea.created}" /></td>
+
+
+
 					<c:choose>
 						<c:when test="${empty tarea.planned}">
 							<td>------</td>
 						</c:when>
 						<c:otherwise>
-							<td><fmt:formatDate pattern="dd/MM/yyyy" value="${tarea.planned}"/></td>
+							<td><fmt:formatDate pattern="dd/MM/yyyy"
+									value="${tarea.planned}" /></td>
+
 						</c:otherwise>
 					</c:choose>
-					<td class="danger"><a
-						onclick="return confirm('Finalizar tarea')"
-						href="finalizarTarea?id=${tarea.id}">terminar</a></td>
+
+
+
+
+
+					<c:choose>
+						<c:when test="${empty tarea.finished}">
+							<td>------</td>
+						</c:when>
+						<c:otherwise>
+							<td><fmt:formatDate pattern="dd/MM/yyyy"
+									value="${tarea.finished}" /></td>
+						</c:otherwise>
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${ not empty tarea.finished }">
+							<td class="default">------</td>
+						</c:when>
+						<c:otherwise>
+							<td class="danger"><c:choose>
+									<c:when test="${CategoriaSistema == 'NO' }">
+										<a onclick="return confirm('Finalizar tarea')"
+											href="finalizarTarea?id=${tarea.id}&CategoriaSistema=${CategoriaSistema}&idCategoria=${idCategoria}">finalizar</a>
+									</c:when>
+									<c:otherwise>
+										<a onclick="return confirm('Finalizar tarea')"
+											href="finalizarTarea?id=${tarea.id}&CategoriaSistema=${CategoriaSistema}&nombreCategoria=${nombreCategoria}">finalizar</a>
+									</c:otherwise>
+								</c:choose></td>
+						</c:otherwise>
+					</c:choose>
+
 				</tr>
 			</c:forEach>
 		</table>

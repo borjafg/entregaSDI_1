@@ -20,15 +20,22 @@ public class ListarTareasAction implements Accion {
     public String execute(HttpServletRequest request,
 	    HttpServletResponse response) {
 
-	String resultado = "EXITO";
-	List<Task> listaTareas;
+	Log.debug("He llegado a la accion de listar tareas");
 
+	List<Task> listaTareas;
+	String categoriaSistema = request.getParameter("CategoriaSistema");
+	if (categoriaSistema == null) {
+	    request.setAttribute("advertencia_usuario",
+		    "no se ha podido listar correctamente sus tareas");
+	    Log.error("La cateogria del sistema es nula.");
+	    return "FRACASO";
+	}
 	try {
-	    if (request.getParameter("CategoriaSistema").equals("NO")) {
+	    if (categoriaSistema.equals("NO")) {
 
 		TaskService taskService = Services.getTaskService();
 
-		String id = request.getParameter("Id");
+		String id = request.getParameter("idCategoria");
 
 		Long idLong = LongUtil.parseLong(id);
 
@@ -39,10 +46,13 @@ public class ListarTareasAction implements Accion {
 			OrdenationBy.orderByCreationDate(listaTareas));
 
 		Log.debug("Obtenida lista de tareas de la categoria '%d' "
-			+ "conteniendo [%d] categorías",
-			(Long) request.getAttribute("Id"), listaTareas.size());
+			+ "conteniendo [%d] categorías", idLong,
+			listaTareas.size());
+		request.setAttribute("CategoriaSistema", request.getParameter("CategoriaSistema"));
+		request.setAttribute("idCategoria", idLong);
+		return "EXITO";
 
-	    } else if (request.getParameter("CategoriaSistema").equals("SI")) {
+	    } else {
 		TaskService taskService = Services.getTaskService();
 		User user = (User) request.getSession().getAttribute("user");
 		if (request.getParameter("nombreCategoria").equals("Inbox")) {
@@ -61,18 +71,24 @@ public class ListarTareasAction implements Accion {
 		}
 
 		request.setAttribute("listaTareas", listaTareas);
-
+		Log.debug("Obtenida lista de tareas de categorias del sistema "
+			+ "conteniendo [%d] categorías", listaTareas.size());
+		
+		request.setAttribute("CategoriaSistema", request.getParameter("CategoriaSistema"));
+		request.setAttribute("CategoriaSistema", request.getParameter(request.getParameter("nombreCategoria")));
+		return "EXITO";
 	    }
 
 	} catch (BusinessException b) {
 	    request.setAttribute("advertencia_usuario", b.getMessage());
 	    Log.debug("Algo ha ocurrido obteniendo lista de tareas: %s",
 		    b.getMessage());
-	    resultado = "FRACASO";
+	    return "FRACASO";
 	}
 
-	return resultado;
     }
+    
+    
 
     @Override
     public String toString() {

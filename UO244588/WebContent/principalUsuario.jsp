@@ -19,7 +19,7 @@
 
 			<div id="barraNavegacion" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="cerrarSesion.jsp">cerrar sesión</a></li>
+					<li><a href="cerrarSesion">cerrar sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -50,49 +50,55 @@
 				<td id="status"><jsp:getProperty property="status" name="user" /></td>
 			</tr>
 		</table>
-		<br />
+		<br /> <br />
+
+		<form action="nuevaCategoria" method="post" name="nuevaCategoria_form"
+			class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-xs-5" for="nombreCategoriaNueva">Nombre
+					de la nueva categoria :</label>
+				<div class="col-xs-5">
+					<input type="text" class="form-control" id="nombreCategoriaNueva"
+						placeholder="Escriba el nombre de la nueva categoria" name="login"
+						required />
+				</div>
+
+			</div>
+		</form>
+
 
 		<div class="panel panel-default">
 			<div class="panel-heading">Categorias del sistema</div>
 			<div class="panel-body">
-				<table class="table table-striped table-bordered table-hover">
-					<tr>
-						<th>Nombre</th>
-						<th>Listar tareas</th>
-					</tr>
-					<tr>
-						<td>Inbox</td>
-						<td>
-							<form
-								action="listarTareas?CategoriaSistema=SI&nombreCategoria=Inbox" method="post">
-								<div class="checkbox">
-									<input type="checkbox" value="SI">tareas finalizadas</input>
-								</div>
-								<input type="submit" value="listar" class="btn btn-primary" />
-							</form>
-						</td>
-
-					</tr>
-					<tr>
-						<td>Hoy</td>
-						<td><form
-								action="listarTareas?CategoriaSistema=SI&nombreCategoria=Hoy" method="post">
-
-								<input type="submit" value="listar" class="btn btn-primary" />
-
-							</form></td>
-					</tr>
-					<tr>
-						<td>Semana</td>
-						<td><form
-								action="listarTareas?CategoriaSistema=SI&nombreCategoria=Semana" method="post">
-
-								<input type="submit" value="listar" class="btn btn-primary" />
-
-							</form></td>
-					</tr>
-
-				</table>
+				<ul>
+					<li><h2>Inbox</h2>
+						<form class="form-horizontal" method="post"
+							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Inbox">
+							<div class="form-group">
+								<label><input type="checkbox" /> ver tareas finalizadas</label>
+							</div>
+							<div class="form-group">
+								<input type="submit" value="Listar tareas"
+									class="btn btn-primary" />
+							</div>
+						</form></li>
+					<li><h2>Hoy</h2>
+						<form method="post" class="form-horizontal"
+							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Hoy">
+							<div class="form-group">
+								<input type="submit" value="Listar tareas"
+									class="btn btn-primary" />
+							</div>
+						</form></li>
+					<li><h2>Semana</h2>
+						<form method="post" class="form-horizontal"
+							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Semana">
+							<div class="form-group">
+								<input type="submit" value="Listar tareas"
+									class="btn btn-primary" />
+							</div>
+						</form></li>
+				</ul>
 
 			</div>
 

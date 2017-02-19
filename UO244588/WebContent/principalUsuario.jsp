@@ -55,14 +55,45 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Categorias del sistema</div>
 			<div class="panel-body">
-				<ul>
-					<li><a
-						href="listarTareas?CategoriaSistema=SI&nombreCategoria=Inbox">Inbox</a></li>
-					<li><a
-						href="listarTareas?CategoriaSistema=SI&nombreCategoria=Hoy">Hoy</a></li>
-					<li><a
-						href="listarTareas?CategoriaSistema=SI&nombreCategoria=Semana">Semana</a></li>
-				</ul>
+				<table class="table table-striped table-bordered table-hover">
+					<tr>
+						<th>Nombre</th>
+						<th>Listar tareas</th>
+					</tr>
+					<tr>
+						<td>Inbox</td>
+						<td>
+							<form
+								action="listarTareas?CategoriaSistema=SI&nombreCategoria=Inbox" method="post">
+								<div class="checkbox">
+									<input type="checkbox" value="SI">tareas finalizadas</input>
+								</div>
+								<input type="submit" value="listar" class="btn btn-primary" />
+							</form>
+						</td>
+
+					</tr>
+					<tr>
+						<td>Hoy</td>
+						<td><form
+								action="listarTareas?CategoriaSistema=SI&nombreCategoria=Hoy" method="post">
+
+								<input type="submit" value="listar" class="btn btn-primary" />
+
+							</form></td>
+					</tr>
+					<tr>
+						<td>Semana</td>
+						<td><form
+								action="listarTareas?CategoriaSistema=SI&nombreCategoria=Semana" method="post">
+
+								<input type="submit" value="listar" class="btn btn-primary" />
+
+							</form></td>
+					</tr>
+
+				</table>
+
 			</div>
 
 		</div>
@@ -86,10 +117,8 @@
 
 										<input type="text" class="form-control"
 											id="Categoria${categoria.id}" name="nombreCategoria"
-											value="${categoria.name}" required />
-
-												<input type="submit" value="Renombrar"
-													class="btn btn-primary" />
+											value="${categoria.name}" required /> <input type="submit"
+											value="Renombrar" class="btn btn-primary" />
 									</div>
 
 								</form>
@@ -97,11 +126,11 @@
 							<td><a
 								href="listarTareas?CategoriaSistema=NO&Id=${categoria.id}">
 									tareas</a></td>
-							<td class="danger">
-								<a onclick="return confirm('Eliminar categoria')" href="eliminarCategoria?id=${categoria.id}">eliminar</a>
-							</td>
-						
-						
+							<td class="danger"><a
+								onclick="return confirm('Eliminar categoria')"
+								href="eliminarCategoria?id=${categoria.id}">eliminar</a></td>
+
+
 						</tr>
 					</c:forEach>
 				</table>

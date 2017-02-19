@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="jsp_util/comprobarNavegacion.jsp"%>
+<!DOCTYPE html>
 <html>
 <head>
 <title>TaskManager - Administración de usuarios</title>
@@ -44,8 +45,8 @@
 				<th>Cambiar estado</th>
 				<th>Eliminar del sistema</th>
 			</tr>
-			<c:forEach var="usuario" items="${listaUsuarios}" varStatus="i">
-				<tr id="element_${i.index}">
+			<c:forEach var="usuario" items="${listaUsuarios}">
+				<tr>
 					<td>${usuario.login}</td>
 					<td>${usuario.email}</td>
 					<td>${usuario.status.name().toLowerCase()}</td>

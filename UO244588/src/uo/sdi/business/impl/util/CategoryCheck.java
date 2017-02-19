@@ -45,6 +45,14 @@ public class CategoryCheck {
 	BusinessCheck.isNull(other, "El nombre de la categoria no se puede "
 		+ "repetir para este usuario");
     }
+    
+    public static void isUniqueName(String category,Long idUser) throws BusinessException{
+	Category other = CategoryFinder.findByUserIdAndName(idUser
+		, category);
+
+	BusinessCheck.isNull(other, "El nombre de la categoria no se puede "
+		+ "repetir para este usuario");
+    }
 
     public static void isNotForAdminUser(Category category)
 	    throws BusinessException {

@@ -25,16 +25,15 @@ public class UpdateCategoryCommand implements Command<Void> {
 	BusinessCheck.isNotNull(category, "La categoria no existe");
 
 	String previousName = category.getName();
-	category.setName(name);
 
 	CategoryCheck.nameIsNotNull(category);
 	CategoryCheck.nameIsNotEmpty(category);
 
 	if (!previousName.equals(name)) {
-	    CategoryCheck.isUniqueName(category);
+	    CategoryCheck.isUniqueName(name, category.getUser().getId());
 	}
 
-	Jpa.getManager().merge(category);
+	category.setName(name);
 
 	return null;
     }

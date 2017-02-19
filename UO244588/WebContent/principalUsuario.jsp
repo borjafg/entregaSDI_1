@@ -1,4 +1,4 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+       <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="jsp_util/comprobarNavegacion.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -123,19 +123,20 @@
 						<th>Nombre categoria</th>
 						<th>Listar tareas</th>
 						<th>Eliminar categoria</th>
+						<th>Duplicar categoria</th>
 					</tr>
 					<c:forEach var="categoria" items="${listaCategorias}">
 						<tr>
 							<td>
-								<form action="renombrarCategoria" method="post"
+								<form action="renombrarCategoria?idCategoria=${categoria.id}" method="post"
 									name="renombrar_form" class="form-horizontal">
-									<div class="col-xs-5">
 
-										<input type="text" class="form-control"
-											id="Categoria${categoria.id}" name="nombreCategoria"
-											value="${categoria.name}" required /> <input type="submit"
-											value="Renombrar" class="btn btn-primary" />
-									</div>
+
+									<input type="text" class="form-control col-md-8"
+										id="Categoria${categoria.id}" 
+										value="${categoria.name}" name="nombreCategoria" required /> <input type="submit"
+										value="Renombrar" class="btn btn-primary" />
+
 
 								</form>
 							</td>
@@ -146,6 +147,8 @@
 								onclick="return confirm('Eliminar categoria')"
 								href="eliminarCategoria?idCategoria=${categoria.id}">eliminar</a></td>
 
+							<td><a href="duplicarCategoria?idCategoria=${categoria.id }">duplicar</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>

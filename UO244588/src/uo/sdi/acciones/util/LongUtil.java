@@ -1,6 +1,5 @@
 package uo.sdi.acciones.util;
 
-import java.awt.font.NumericShaper;
 
 public class LongUtil {
 

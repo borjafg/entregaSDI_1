@@ -62,7 +62,9 @@
 						placeholder="Escriba el nombre de la nueva categoria" name="login"
 						required />
 				</div>
-
+			
+			
+				<input type="submit" value="Crear categoria" class="btn btn-primary" />
 			</div>
 		</form>
 

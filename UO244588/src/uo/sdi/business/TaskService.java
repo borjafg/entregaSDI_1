@@ -23,15 +23,15 @@ public interface TaskService {
     public List<Category> findCategoriesByUserId(Long id)
 	    throws BusinessException;
 
-    public Long createTask(String name, boolean forToday, Long idUser)
-	    throws BusinessException;
+    public Long createTask(String name, boolean forToday, Long idUser,
+	    Long idCateg) throws BusinessException;
 
     public void deleteTask(Long id) throws BusinessException;
 
     public void markTaskAsFinished(Long id) throws BusinessException;
 
-    public void updateTask(Long idTask, String name, String comment, Date planned,
-	    Long idCateg) throws BusinessException;
+    public void updateTask(Long idTask, String name, String comment,
+	    Date planned, Long idCateg) throws BusinessException;
 
     public Task findTaskById(Long id) throws BusinessException;
 

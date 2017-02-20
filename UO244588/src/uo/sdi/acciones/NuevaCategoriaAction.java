@@ -42,4 +42,9 @@ public class NuevaCategoriaAction implements Accion {
 	}
     }
 
+    @Override
+    public String toString() {
+	return getClass().getName();
+    }
+
 }

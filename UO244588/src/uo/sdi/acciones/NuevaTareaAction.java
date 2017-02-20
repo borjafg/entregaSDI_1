@@ -146,4 +146,9 @@ public class NuevaTareaAction implements Accion {
 	return LongUtil.parseLong(idCategoria);
     }
 
+    @Override
+    public String toString() {
+	return getClass().getName();
+    }
+
 }

@@ -15,7 +15,6 @@
 			<strong>Error irrecuperable</strong>: contacte con el responsable de
 			la aplicación.
 		</p>
-		<br /> <a href="/login.jsp">Volver a la página de login</a>
 	</div>
 </body>
 </html>

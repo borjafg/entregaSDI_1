@@ -2,6 +2,7 @@ package uo.sdi.business.impl.task.command;
 
 import java.util.Date;
 
+import uo.sdi.business.exception.BusinessCheck;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.impl.command.Command;
 import uo.sdi.business.impl.util.TaskCheck;
@@ -9,7 +10,6 @@ import uo.sdi.model.Category;
 import uo.sdi.model.Task;
 import uo.sdi.persistence.CategoryFinder;
 import uo.sdi.persistence.TaskFinder;
-import uo.sdi.persistence.util.Jpa;
 
 public class UpdateTaskCommand implements Command<Void> {
 
@@ -41,13 +41,13 @@ public class UpdateTaskCommand implements Command<Void> {
 	if (idCateg != null) {
 	    Category categ = CategoryFinder.findById(idCateg);
 
+	    BusinessCheck.isNotNull(categ, "La categoria indicada no existe");
+	    
 	    task.setCategory(categ);
 	}
 
 	task.setComments(comment);
 	task.setPlanned(planned);
-
-	Jpa.getManager().merge(task);
 
 	return null;
     }

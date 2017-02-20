@@ -39,3 +39,4 @@ insert into ttasks values (19,'tarea 5 para usuario 3','2015-02-06 00:02:24.0000
 insert into ttasks values (20,'tarea 6 para usuario 3','2015-02-07 00:02:24.000000',NULL,NULL,'tarea 6 para usuario 1',NULL,3);
 insert into ttasks values (21,'tarea 7 para usuario 3','2015-02-07 00:02:24.000000',NULL,'2017-05-04','tarea 7 para usuario 1',6,3);
 
+commit;

@@ -1,68 +1,102 @@
 package uo.sdi.acciones;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import uo.sdi.acciones.util.LongUtil;
+import uo.sdi.business.Services;
+import uo.sdi.business.TaskService;
+import uo.sdi.business.exception.BusinessException;
 import alb.util.log.Log;
-import uo.sdi.model.User;
 
-public class ModificarDatosTareaAction implements Accion {
+public class ModificarDatosTareaAction extends
+	AbstractModificarDatosTareaAction {
 
     @Override
-    public String execute(HttpServletRequest request,
+    protected String procesarPeticion(HttpServletRequest request,
 	    HttpServletResponse response) {
 
-	boolean error = validarParametrosCategoria(request);
+	String identTarea = request.getParameter("idTarea");
 
-	if (error) {
-	    return "FRACASO";
-	}
+	if (identTarea != null) {
+	    Long idTarea = LongUtil.parseLong(identTarea);
 
-	User user = (User) request.getSession().getAttribute("user");
+	    if (idTarea == null) {
+		request.setAttribute("advertencia_usuario", "Falta indicar de "
+			+ "qué tarea se quieren cambiar los datos");
 
-	return null;
-    }
-
-    // =================================
-    // Validaciones de parámetros
-    // =================================
-
-    private boolean validarParametrosCategoria(HttpServletRequest request) {
-	String categoriaSistema = request.getParameter("CategoriaSistema");
-
-	if (categoriaSistema == null) {
-	    request.setAttribute("advertencia_usuario",
-		    "no se han podido modificar los datos de la tarea porque "
-			    + "falta indicar algún parámetro");
-
-	    Log.error("La categoria del sistema es nula.");
-
-	    return false;
-	}
-
-	else if (categoriaSistema.equals("NO")) {
-	    String idCategoria = request.getParameter("idCategoria");
-
-	    if (idCategoria != null) {
-		request.setAttribute("idCategoria", idCategoria);
-		return true;
+		return "FRACASO";
 	    }
 
-	    request.setAttribute("advertencia_usuario",
-		    "no se han podido modificar los datos de la tarea porque "
-			    + "falta indicar algún parámetro");
+	    String nombreTarea = request.getParameter("nombre");
+	    String comentario = request.getParameter("comentario");
+	    Date fechaPlaneada = validarFecha(request
+		    .getParameter("fechaPlaneada"));
+	    Long idCategoria = validarLong(request.getParameter("idCategTarea"));
 
-	    return false;
-	}
+	    if (nombreTarea == null || comentario == null
+		    || fechaPlaneada == null || idCategoria == null) {
 
-	else if (categoriaSistema.equals("SI")) {
+		request.setAttribute("advertencia_usuario", "Falta indicar de "
+			+ "qué tarea se quieren cambiar los datos");
 
+		return "FRACASO";
+	    }
+
+	    try {
+		TaskService taskServ = Services.getTaskService();
+
+		taskServ.updateTask(idTarea, nombreTarea, comentario,
+			fechaPlaneada, idCategoria);
+
+		request.setAttribute("exito_usuario", "Se han modificado con "
+			+ "éxito los datos de la tarea");
+
+		return "EXITO";
+	    }
+
+	    catch (BusinessException be) {
+		Log.debug("No se ha podido modificar los datos de la "
+			+ "tarea. Causa del error: %s", be.getMessage());
+
+		request.setAttribute("advertencia_usuario", be.getMessage());
+		return "FRACASO";
+	    }
 	}
 
 	request.setAttribute("advertencia_usuario",
-		"no se han podido modificar los datos de la tarea porque "
-			+ "los parámetros indicados no son válidas");
+		"Falta indicar de qué tarea se quieren modificar los datos");
 
-	return false;
+	return "FRACASO";
     }
+
+    private Long validarLong(String valor) {
+	if (valor == null) {
+	    return null;
+	}
+
+	return LongUtil.parseLong(valor);
+    }
+
+    private Date validarFecha(String fecha) {
+	try {
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+	    return sdf.parse(fecha);
+	}
+
+	catch (ParseException excep) {
+	    return null;
+	}
+    }
+
+    @Override
+    public String toString() {
+	return getClass().getName();
+    }
+
 }

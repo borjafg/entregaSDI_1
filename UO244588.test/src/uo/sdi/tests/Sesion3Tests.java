@@ -23,7 +23,6 @@ public class Sesion3Tests {
 		// desactivamos el scripting
 		mary.setScriptingEnabled(false);
 		mary.setBaseUrl("http://localhost:8280/UO244588");
-
 	}
 
 	@Test// test básico hasta log in
@@ -31,7 +30,7 @@ public class Sesion3Tests {
 		mary.beginAt("/login.jsp");
 		//comprobamos el nombre del titulo de la página
 		mary.assertTitleEquals("TaskManager - Inicie sesión");
-		// comprobamos texto de la página comprobamos texto	de la página							 
+		// comprobamos texto de la página comprobamos texto de la página							 
 		mary.assertTextPresent("Contraseña:");
 		mary.assertTextPresent("Identificador de usuario:"); 
 															

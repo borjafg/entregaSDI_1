@@ -43,9 +43,23 @@
 			<%-- Información necesaria para volver a la lista de tareas --%>
 			<%-- ------------------------------------------------------ --%>
 
-			<input type="hidden" name="CategoriaSistema"
-				value="${CategoriaSistema}" /> <input type="hidden"
-				name="idCategoria" value="${idCategoria}" />
+			<c:choose>
+				<c:when test="${CategoriaSistema == 'NO' }">
+					<input type="hidden" name="CategoriaSistema"
+						value="${CategoriaSistema}" />
+					<input type="hidden" name="idCategoria" value="${idCategoria}" />
+				</c:when>
+
+				<c:otherwise>
+					<input type="hidden" name="CategoriaSistema"
+						value="${CategoriaSistema}" />
+					<input type="hidden" name="nombreCategoria"
+						value="${nombreCategoria}" />
+				</c:otherwise>
+			</c:choose>
+
+			<%-- Información de la tarea que se quiere modificar --%>
+			<input type="hidden" name="idTarea" value="${tarea.id}" />
 
 			<%-- ----------------------------------------- --%>
 			<%-- Datos que se pueden modificar de la tarea --%>
@@ -58,7 +72,7 @@
 				<div class="col-xs-5">
 					<input type="text" class="form-control" id="campoNombre"
 						placeholder="Escriba el nombre de la tarea" name="nombre"
-						value="${nombreTarea}" required />
+						value="${tarea.title}" required />
 				</div>
 			</div>
 
@@ -69,26 +83,28 @@
 				<div class="col-xs-5">
 					<input type="text" class="form-control" id="campoComentario"
 						placeholder="Escriba un comentario sobre la tarea"
-						name="comentario" value="${comentarioTarea}" />
+						name="comentario" value="${tarea.comments}" required />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="control-label col-xs-3" id="labelFechaPlaneada"
-					for="campoFechaPlaneada">Fecha planeada: </label>
+					for="campoFechaPlaneada">Fecha planeada (formato
+					dia/mes/año Ej: 21/12/2017): </label>
 
 				<div class="col-xs-5">
-					<input type="text" class="form-control" id="campoFechaPlaneada"
+					<input type="date" class="form-control" id="campoFechaPlaneada"
 						placeholder="Escriba la fecha de planificación de la tarea"
-						name="fechaPlaneada" value="${fechaPlaneada}" />
+						name="fechaPlaneada" value="${tarea.planned}" required />
 				</div>
 			</div>
 
-			<select class="form-control">
-				<c:forEach var="categ" items="${categoriasUsuario}">
-					<option value="categ.id">categ.name</option>
-				</c:forEach>
-			</select>
+			<br/>
+			<select name="idCategTarea" required>
+					<c:forEach var="categ" items="${categoriasUsuario}">
+						<option value="${categ.id}">${categ.name}</option>
+					</c:forEach>
+				</select>
 
 			<%-- ---------------------------------------- --%>
 			<%-- Botón para cambiar los datos de la tarea --%>

@@ -83,9 +83,11 @@
 			<tr>
 				<th>Nombre tarea</th>
 				<th>Categoria</th>
+				<th>Comentarios</th>
 				<th>Fecha de creación</th>
 				<th>Fecha planeada</th>
 				<th>Fecha finalizada</th>
+				<th>Modificar tarea</th>
 				<th>Finalizar tarea</th>
 			</tr>
 
@@ -98,8 +100,7 @@
 								<c:when
 									test="${(CategoriaSistema == 'SI' && nombreCategoria == 'Semana')}">
 									<td><fech:categ_rojo_tareas_retrasadas_semana
-											fecha_evaluada="${tarea.planned}"
-											nombreCategoria="------" /></td>
+											fecha_evaluada="${tarea.planned}" nombreCategoria="------" /></td>
 								</c:when>
 								<c:otherwise>
 									<td>------</td>
@@ -121,6 +122,8 @@
 							</c:choose>
 						</c:otherwise>
 					</c:choose>
+
+					<td>${tarea.comments}</td>
 
 					<td><fmt:formatDate pattern="dd/MM/yyyy"
 							value="${tarea.created}" /></td>
@@ -157,7 +160,23 @@
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${ not empty tarea.finished }">
+						<c:when test="${not empty tarea.finished}">
+							<td class="default">------</td>
+						</c:when>
+						<c:otherwise>
+							<td><c:choose>
+									<c:when test="${CategoriaSistema == 'NO' }">
+										<a href="modificarTarea?idTarea=${tarea.id}&CategoriaSistema=${CategoriaSistema}&idCategoria=${idCategoria}">Cambiar datos</a>
+									</c:when>
+									<c:otherwise>
+										<a href="modificarTarea?idTarea=${tarea.id}&CategoriaSistema=${CategoriaSistema}&nombreCategoria=${nombreCategoria}">Cambiar datos</a>
+									</c:otherwise>
+								</c:choose></td>
+						</c:otherwise>
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${not empty tarea.finished}">
 							<td class="default">------</td>
 						</c:when>
 						<c:otherwise>

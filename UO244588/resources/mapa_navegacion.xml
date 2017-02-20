@@ -77,7 +77,7 @@
 
 		<opcion valorOpcion="modificarTarea">
 			<resultado valorResultado="FRACASO" valorJSP="/listarTareas" />
-			<resultado valorResultado="EXITO" valorJSP="/modificar.jsp" />
+			<resultado valorResultado="EXITO" valorJSP="/modificarTarea.jsp" />
 		</opcion>
 
 		<opcion valorOpcion="modificarDatosTarea">

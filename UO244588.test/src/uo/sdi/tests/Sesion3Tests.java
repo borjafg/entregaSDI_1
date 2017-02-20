@@ -7,31 +7,38 @@ import org.junit.*;
 public class Sesion3Tests {
 
 	private WebTester mary;
-
+	/*
+	 * Ejecutar los test después de inicializar la base de datos con el script 
+	 * de creación
+	 * 
+	 * Elementos con menús desplegables (Javascript no se han podido hacer
+	 * test de ellos)
+	 * 
+	 */
 	@Before
 	public void prepare() {
 		mary = new WebTester();
-		mary.setScriptingEnabled(false);// desactivamos el scripting
+		// desactivamos el scripting
+		mary.setScriptingEnabled(false);
 		mary.setBaseUrl("http://localhost:8280/UO244588");
 
 	}
 
-	@Test
-	public void testInicioSesionUsuario() {// test básico hasta log in
+	@Test// test básico hasta log in
+	public void testInicioSesionUsuario() {
 		mary.beginAt("/login.jsp");
-		mary.assertTitleEquals("TaskManager - Inicie sesión");// comprobamos el
-																// nombre del
-																// titulo de la
-																// página
-		mary.assertTextPresent("Contraseña:");// comprobamos texto de la página
-		mary.assertTextPresent("Identificador de usuario:");// comprobamos texto
-															// de la página
+		//comprobamos el nombre del titulo de la página
+		mary.assertTitleEquals("TaskManager - Inicie sesión");
+		// comprobamos texto de la página comprobamos texto	de la página							 
+		mary.assertTextPresent("Contraseña:");
+		mary.assertTextPresent("Identificador de usuario:"); 
+															
 
 		/*
 		 * Rellenamos los campos de datos
 		 */
-		mary.setTextField("login", "mary");
-		mary.setTextField("password", "mary123");
+		mary.setTextField("login", "usuario1");
+		mary.setTextField("password", "usuario1");
 		mary.submit();
 
 		mary.assertTitleEquals("TaskManager - Página principal del usuario");
@@ -40,16 +47,15 @@ public class Sesion3Tests {
 	@Test
 	public void testInicioSesionAdmin() {
 		mary.beginAt("/login.jsp");
-		mary.assertTitleEquals("TaskManager - Inicie sesión");// comprobamos el
-																// nombre del
-																// titulo de la
-																// página
-		mary.assertTextPresent("Contraseña:");// comprobamos texto de la página
-		mary.assertTextPresent("Identificador de usuario:");// comprobamos texto
-															// de la página
+		// comprobamos el  nombre del titulo de la página
+		mary.assertTitleEquals("TaskManager - Inicie sesión");
+		
+		// comprobamos texto de la página comprobamos texto de la página
+		mary.assertTextPresent("Contraseña:");
+		mary.assertTextPresent("Identificador de usuario:");
 
-		mary.setTextField("login", "admin");
-		mary.setTextField("password", "admin123");
+		mary.setTextField("login", "administrador1");
+		mary.setTextField("password", "administrador1");
 		mary.submit();
 
 		mary.assertTitleEquals("TaskManager - Administración de usuarios");
@@ -59,54 +65,59 @@ public class Sesion3Tests {
 	@Test
 	public void testIniciarSesionSinExito() {
 		mary.beginAt("/login.jsp");
-		mary.assertTitleEquals("TaskManager - Inicie sesión");// comprobamos el
-																// nombre del
-																// titulo de la
-																// página
-		mary.assertTextPresent("Contraseña:");// comprobamos texto de la página
-		mary.assertTextPresent("Identificador de usuario:");// comprobamos texto
-															// de la página
+		mary.assertTitleEquals("TaskManager - Inicie sesión");
+		// comprobamos el  nombre del titulo de la página
+		mary.assertTextPresent("Contraseña:");
+		mary.assertTextPresent("Identificador de usuario:");
 
 		/*
 		 * Rellenamos los campos de datos
 		 */
-		mary.setTextField("login", "mary");
-		mary.setTextField("password", "121223123");// contraseña incorrecta
+		mary.setTextField("login", "usuario1");
+		// contraseña incorrecta
+		mary.setTextField("password", "121223123");
 		mary.submit();
-
+		
 		mary.assertTitleEquals("TaskManager - Inicie sesión");
 	}
 
 	@Test
-	public void testCerrarSesion() {
+	public void testCerrarSesionAdministrador() {
 		mary.beginAt("/login.jsp");
 
-		mary.setTextField("login", "admin");
-		mary.setTextField("password", "admin123");
+		mary.setTextField("login", "administrador1");
+		mary.setTextField("password", "administrador1");
 		mary.submit();
 
+		// cerramos sesion
+		mary.clickLink("cerrarSesion");
+		mary.assertTitleEquals("TaskManager - Inicie sesión");
+
+	}
+	
+	@Test
+	public void testCerrarSesionUsuario() {
+		mary.beginAt("/login.jsp");
+
+		mary.setTextField("login", "usuario1");
+		mary.setTextField("password", "usuario1");
+		mary.submit();
 		mary.clickLink("cerrarSesion");// cerramos sesion
 
-		mary.assertTitleEquals("TaskManager - Inicie sesión");// comprobamos que
-																// hemos vuelto
-																// a las pestaña
-																// de
+		mary.assertTitleEquals("TaskManager - Inicie sesión");
 
 	}
 
-	@Test
-	public void testRegistrarseCorrectamenteUsuario() {// Solo se puede ejecutar
-														// una vez, hay que
-														// limpiar la base de
-														// datos
+	@Test// Solo se puede ejecutar una vez, hay que limpiar la base de datos
+	public void testRegistrarseCorrectamenteUsuario() {
+														
 		mary.beginAt("/login.jsp");
-		mary.assertTitleEquals("TaskManager - Inicie sesión");// comprobamos el
-																// nombre del
-																// titulo de la
-																// página
-		mary.assertTextPresent("Contraseña:");// comprobamos texto de la página
-		mary.assertTextPresent("Identificador de usuario:");// comprobamos texto
-															// de la página
+		// comprobamos el nombre del titulo de la página
+		mary.assertTitleEquals("TaskManager - Inicie sesión");
+		
+		// comprobamos texto de la página comprobamos texto de la página
+		mary.assertTextPresent("Contraseña:");
+		mary.assertTextPresent("Identificador de usuario:");
 
 		mary.clickLink("registrarse");
 
@@ -127,39 +138,88 @@ public class Sesion3Tests {
 	@Test
 	public void testEliminarCategoriaDelSistema() {
 		mary.beginAt("/login.jsp");
-		mary.assertTitleEquals("TaskManager - Inicie sesión");// comprobamos el
-																// nombre del
-																// titulo de la
-																// página
-		mary.assertTextPresent("Contraseña:");// comprobamos texto de la página
-		mary.assertTextPresent("Identificador de usuario:");// comprobamos texto
-															// de la página
+		// comprobamos el nombre del titulo de la página
+		mary.assertTitleEquals("TaskManager - Inicie sesión");
+		// comprobamos texto de la página comprobamos texto de la página
+		mary.assertTextPresent("Contraseña:");
+		mary.assertTextPresent("Identificador de usuario:");
 
-		mary.setTextField("login", "mary");
-		mary.setTextField("password", "mary123");
+		mary.setTextField("login", "usuario1");
+		mary.setTextField("password", "usuario1");
 		mary.submit();
 		mary.assertTextPresent("¡Bienvenido al Task-Manager!");
 
+	}
+	
+	@Test
+	public void testHabilitarDeshabilitarUnusuario(){
+		//Entramos en sesión como administrador
+		mary.beginAt("/login.jsp");
+		mary.setTextField("login", "administrador1");
+		mary.setTextField("password", "administrador1");
+		mary.submit();
+		//vamos a deshabilitar al usuario1
+		mary.assertLinkPresent("deshabilitarusuario3");
+		mary.clickLink("deshabilitarusuario3");
+		//comprobamos que esté el enlace para volver a habilitar
+		mary.assertLinkPresent("habilitarusuario3");
+		mary.clickLink("habilitarusuario3");
 	}
 
 	@Test
 	public void testEntrarEnCategoriasDelSistema() {
 		mary.beginAt("/login.jsp");
 
-		mary.setTextField("login", "mary");
-		mary.setTextField("password", "mary123");
+		mary.setTextField("login", "usuario1");
+		mary.setTextField("password", "usuario1");
 		mary.submit();
 
-		mary.clickButton("btnInbox");
-
-		mary.assertTitleEquals("Task Manager - Listado de Tareas");// hay que
-																	// hacer
-																	// algo
-																	// identificativo
-																	// de las
-																	// categorias
-																	// del
-																	// sistema
+		mary.submit("btnHoy");
+		//hay que hacer algo identificativo de las categorias del sistema
+		mary.assertTitleEquals("Task Manager - Listado de Tareas");
 	}
+	
+	@Test
+	public void testnuevaCategoria(){
+		mary.beginAt("/login.jsp");
+
+		mary.setTextField("login", "usuario2");
+		mary.setTextField("password", "usuario2");
+		mary.submit();
+		
+		mary.setTextField("nombreCategoriaNueva", "CategoriaTest");
+		mary.submit("crearCategoria");
+		
+		mary.assertTextFieldEquals("nombreCategoria_CategoriaTest", "CategoriaTest");
+	}
+	@Test
+	public void testrenombrarCategoria(){
+		mary.beginAt("/login.jsp");
+
+		mary.setTextField("login", "usuario2");
+		mary.setTextField("password", "usuario2");
+		mary.submit();
+		
+		mary.setTextField("nombreCAtegoria_Categoria 1 para usuario 2", "NuevoNombreCategoria");
+		mary.submit("renombrar_Categoria 1 para usuario 2");
+		mary.assertTextFieldEquals("nombreCategoria_NuevoNombreCategoria", "NuevoNombreCategoria");
+	}
+	@Test
+	public void testDuplicarCategoria(){
+		mary.beginAt("/login.jsp");
+
+		mary.setTextField("login", "usuario2");
+		mary.setTextField("password", "usuario2");
+		mary.submit();
+		
+		mary.setTextField("nombreCategoriaNueva", "CategoriaTestDuplicar");
+		mary.submit("crearCategoria");
+		
+		mary.assertTextFieldEquals("nombreCategoria_CategoriaTestDuplicar", "CategoriaTestDuplicar");
+		
+		mary.clickLink("duplicar_CategoriaTestDuplicar");
+		mary.assertTextFieldEquals("nombreCategoria_CategoriaTestDuplicar - copy", "CategoriaTestDuplicar - copy");
+	}
+
 
 }

@@ -47,10 +47,6 @@ public class Category {
     // ===== Logica de negocio =====
     // =============================
 
-    public void rename(String name) {
-	this.name = name;
-    }
-
     public Category copiar() {
 	Category categCopy = new Category(user);
 	categCopy.setName(name + " - copy");
@@ -71,7 +67,7 @@ public class Category {
     }
 
     public void setName(String name) {
-	this.name= name;
+	this.name = name;
     }
 
     public Date getCreated() {

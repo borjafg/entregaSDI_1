@@ -19,7 +19,7 @@
 
 			<div id="barraNavegacion" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="cerrarSesion">cerrar sesión</a></li>
+					<li><a id="cerrarSesion" href="cerrarSesion">cerrar sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -71,7 +71,7 @@
 								<label><input type="checkbox" /> ver tareas finalizadas</label>
 							</div>
 							<div class="form-group">
-								<input id="btnInbox" type="submit" value="Listar tareas"
+								<input name="btnInbox" id="btnInbox" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>
@@ -79,7 +79,7 @@
 						<form method="post" class="form-horizontal"
 							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Hoy">
 							<div class="form-group">
-								<input id="btnHoy" type="submit" value="Listar tareas"
+								<input name="btnHoy" id="btnHoy" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>
@@ -87,7 +87,7 @@
 						<form method="post" class="form-horizontal"
 							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Semana">
 							<div class="form-group">
-								<input id="btnSemana" type="submit" value="Listar tareas"
+								<input name="btnSemana" id="btnSemana" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>
@@ -109,7 +109,7 @@
 						name="nombreCategoriaNueva" required />
 				</div>
 
-				<input type="submit" value="Crear categoria" class="btn btn-primary" />
+				<input type="submit" name="crearCategoria" value="Crear categoria" class="btn btn-primary" />
 			</div>
 		</form>
 
@@ -133,21 +133,21 @@
 
 
 									<input type="text" class="form-control col-md-8"
-										id="Categoria${categoria.id}" 
-										value="${categoria.name}" name="nombreCategoria" required /> <input type="submit"
-										value="Renombrar" class="btn btn-primary" />
+										id="Categoria${categoria.name}" 
+										value="${categoria.name}" name="nombreCategoria_${categoria.name}" required /> <input type="submit"
+										name="renombrar_${categoria.name}"value="Renombrar" class="btn btn-primary" />
 
 
 								</form>
 							</td>
-							<td><a
+							<td><a id="tareas_${categoria.name}"
 								href="listarTareas?CategoriaSistema=NO&idCategoria=${categoria.id}">
 									tareas</a></td>
 							<td class="danger"><a id="eliminar${categoria.id}"
 								onclick="return confirm('Eliminar categoria')"
 								href="eliminarCategoria?idCategoria=${categoria.id}">eliminar</a></td>
 
-							<td><a href="duplicarCategoria?idCategoria=${categoria.id }">duplicar</a>
+							<td><a id="duplicar_${categoria.name}" href="duplicarCategoria?idCategoria=${categoria.id }">duplicar</a>
 							</td>
 						</tr>
 					</c:forEach>

@@ -50,6 +50,10 @@ public class NuevaTareaAction implements Accion {
 	}
     }
 
+    // ===========================
+    // Creación de la tarea
+    // ===========================
+
     private String crearTareaSistema(HttpServletRequest request,
 	    String nombreTarea) throws BusinessException {
 
@@ -69,8 +73,8 @@ public class NuevaTareaAction implements Accion {
 	TaskService taskServ = Services.getTaskService();
 
 	if (nombreCategoria.equals("Hoy")) {
-	    taskServ.createTask(nombreTarea, true,
-		    ((User) request.getAttribute("user")).getId(), null);
+	    taskServ.createTask(nombreTarea, true, ((User) request.getSession()
+		    .getAttribute("user")).getId(), null);
 	}
 
 	else {
@@ -101,8 +105,8 @@ public class NuevaTareaAction implements Accion {
 
 	TaskService taskServ = Services.getTaskService();
 
-	taskServ.createTask(nombreTarea, false,
-		((User) request.getAttribute("user")).getId(), idCateg);
+	taskServ.createTask(nombreTarea, false, ((User) request.getSession()
+		.getAttribute("user")).getId(), idCateg);
 
 	request.setAttribute("exito_usuario", "Se ha creado una nueva "
 		+ "tarea con nombre '" + nombreTarea + "'");

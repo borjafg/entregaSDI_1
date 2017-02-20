@@ -38,8 +38,11 @@
 			<div class="panel-body">
 				<c:choose>
 					<c:when test="${CategoriaSistema == 'NO' }">
-						<form
-							action="nuevaTarea?CategoriaSistema=${CategoriaSistema}&idCategoria=${idCategoria}">
+						<form action="nuevaTarea">
+
+							<input type="hidden" name="CategoriaSistema"
+								value="${CategoriaSistema}" /> <input type="hidden"
+								name="idCategoria" value="${idCategoria}" />
 
 							<div class="form-group">
 								<label for="nombreTarea">Nombre de la tarea</label> <input
@@ -53,8 +56,11 @@
 					</c:when>
 					<c:otherwise>
 						<%-- Categoria del sistema == 'SI' --%>
-						<form
-							action="nuevaTarea?id=${tarea.id}&CategoriaSistema=${CategoriaSistema}&nombreCategoria=${nombreCategoria}">
+						<form action="nuevaTarea">
+
+							<input type="hidden" name="CategoriaSistema"
+								value="${CategoriaSistema}" /> <input type="hidden"
+								name="nombreCategoria" value="${nombreCategoria}" />
 
 							<div class="form-group">
 								<label for="nombreTarea">Nombre de la tarea</label> <input

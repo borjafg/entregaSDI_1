@@ -3,9 +3,9 @@
 <html>
 <head>
 <title>TaskManager - Inicie sesión</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script src="jquery/jquery-3.1.1.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" TYPE="text/css">
+<script type="text/javascript" src="jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- =================== -->
@@ -19,7 +19,7 @@
 
 			<div id="barraNavegacion" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="registrarse.jsp">registrarse</a></li>
+					<li><a id="registrarse" href="registrarse.jsp">registrarse</a></li>
 				</ul>
 			</div>
 		</div>
@@ -37,7 +37,7 @@
 			class="form-horizontal">
 
 			<div class="form-group">
-				<label class="control-label col-xs-3" for="campoLogin">Identificador
+				<label id="labelIdentificador" class="control-label col-xs-3" for="campoLogin">Identificador
 					de usuario:</label>
 
 				<div class="col-xs-5">
@@ -72,7 +72,7 @@
 			<%@ include file="jsp_util/mensaje_advertencia.jsp"%>
 		</div>
 
-		<div class="col-sm-offset-3 col-xs-3">
+		<div>
 			<%@ include file="jsp_util/mensaje_exito.jsp"%>
 		</div>
 	</div>

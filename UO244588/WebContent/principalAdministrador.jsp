@@ -4,9 +4,9 @@
 <html>
 <head>
 <title>TaskManager - Administración de usuarios</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script src="jquery/jquery-3.1.1.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" TYPE="text/css">
+<script type="text/javascript" src="jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<%-- ===================

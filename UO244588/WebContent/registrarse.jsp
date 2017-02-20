@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TaskManager - Inicie sesión</title>
+<title>TaskManager - registrase</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="jquery/jquery-3.1.1.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -19,7 +19,7 @@
 
 			<div id="barraNavegacion" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="login.jsp">iniciar sesión</a></li>
+					<li><a id="inicioSesion" href="login.jsp">iniciar sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 	<!-- =================== -->
 
 	<div class="container" style="margin-top: 50px">
-		<h1 class="col-sm-offset-3">Inicie sesión</h1>
+		<h1 class="col-sm-offset-3">Registrese</h1>
 		<br />
 
 		<form action="registrarse" method="post" name="registrarse_form"

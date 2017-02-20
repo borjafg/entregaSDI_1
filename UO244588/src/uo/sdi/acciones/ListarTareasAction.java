@@ -5,14 +5,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import alb.util.log.Log;
+import uo.sdi.acciones.util.Filter;
 import uo.sdi.acciones.util.LongUtil;
+import uo.sdi.acciones.util.OrdenationInbox_And_User;
+import uo.sdi.acciones.util.OrdenationToday;
+import uo.sdi.acciones.util.OrdenationWeek;
 import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
-import uo.sdi.business.impl.task.command.util.OrdenationBy;
 import uo.sdi.model.Task;
 import uo.sdi.model.User;
+import alb.util.log.Log;
 
 public class ListarTareasAction implements Accion {
 
@@ -35,13 +38,14 @@ public class ListarTareasAction implements Accion {
 
 	try {
 	    if (categoriaSistema.equals("NO")) {
+		Log.debug("Se van a listar tareas de una categoria de usuario");
 		return listarTareasUsuario(request);
 	    }
 
 	    else {
+		Log.debug("Se van a listar tareas de una categoria del sistema");
 		return listarTareasSistema(request);
 	    }
-
 	}
 
 	catch (BusinessException b) {
@@ -58,15 +62,37 @@ public class ListarTareasAction implements Accion {
 	    throws BusinessException {
 
 	String id = request.getParameter("idCategoria");
+
+	if (id == null) {
+	    request.setAttribute("advertencia_usuario", "No se ha indicado el "
+		    + "id de la categoria de la que se quieren ver las tareas");
+
+	    return "FRACASO";
+	}
+
 	Long idLong = LongUtil.parseLong(id);
+
+	if (idLong == null) {
+	    request.setAttribute("advertencia_usuario", "No se ha indicado el "
+		    + "id de la categoria de la que se quieren ver las tareas");
+
+	    return "FRACASO";
+	}
 
 	TaskService taskService = Services.getTaskService();
 
-	List<Task> listaTareas = taskService
-		.findTasksByCategoryIdOrderByCreationDate(idLong);
+	List<Task> listaTareas = taskService.findTasksByCategoryId(idLong);
 
-	request.setAttribute("listaTareas",
-		OrdenationBy.orderByCreationDate(listaTareas));
+	if (filtrarTareas(request)) {
+	    Filter.removeFinishedTasks(listaTareas);
+	    OrdenationInbox_And_User.sortWhitoutFinishedTasks(listaTareas);
+	}
+
+	else {
+	    OrdenationInbox_And_User.sortWhitFinishedTasks(listaTareas);
+	}
+
+	request.setAttribute("listaTareas", listaTareas);
 
 	Log.debug("Obtenida lista de tareas de la categoria '%d' "
 		+ "conteniendo [%d] categorías", idLong, listaTareas.size());
@@ -87,18 +113,26 @@ public class ListarTareasAction implements Accion {
 	List<Task> listaTareas;
 
 	if (request.getParameter("nombreCategoria").equals("Inbox")) {
-	    listaTareas = OrdenationBy.orderByPlannedDate(taskService
-		    .findInboxTasksByUserId(user.getId()));
+	    listaTareas = taskService.findInboxTasksByUserId(user.getId());
+
+	    if (filtrarTareas(request)) {
+		Filter.removeFinishedTasks(listaTareas);
+		OrdenationInbox_And_User.sortWhitoutFinishedTasks(listaTareas);
+	    }
+
+	    else {
+		OrdenationInbox_And_User.sortWhitFinishedTasks(listaTareas);
+	    }
 	}
 
 	else if (request.getParameter("nombreCategoria").equals("Hoy")) {
-	    listaTareas = OrdenationBy.orderByPlannedDate(taskService
-		    .findTodayTasksByUserId(user.getId()));
+	    listaTareas = taskService.findTodayTasksByUserId(user.getId());
+	    OrdenationToday.sort(listaTareas);
 	}
 
 	else { // categoria Semana
-	    listaTareas = OrdenationBy.orderByPlannedDateAndName(taskService
-		    .findWeekTasksByUserId(user.getId()));
+	    listaTareas = taskService.findWeekTasksByUserId(user.getId());
+	    OrdenationWeek.sort(listaTareas);
 	}
 
 	request.setAttribute("listaTareas", listaTareas);
@@ -111,6 +145,21 @@ public class ListarTareasAction implements Accion {
 		request.getParameter("nombreCategoria"));
 
 	return "EXITO";
+    }
+
+    /**
+     * Indica si hay activar o desactivar el filtro que quita del listado las
+     * tareas finalizadas.
+     * 
+     */
+    private boolean filtrarTareas(HttpServletRequest request) {
+	String filtrar = request.getParameter("filtrarTareas");
+
+	if (filtrar != null && filtrar.equals("NO")) {
+	    return false;
+	}
+
+	return true;
     }
 
     @Override

@@ -23,12 +23,18 @@
 	</tag>
 
 	<tag>
-		<name>anterior_hoy_texto</name>
+		<name>anterior_hoy_planeada_finalizada</name>
 		<tag-class>uo.sdi.tags.MostrarTextoRojoFechaAnteriorHoyTag</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
 			<name>fecha_evaluada</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>fecha_finalizacion</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>

@@ -1,4 +1,5 @@
-       <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="jsp_util/comprobarNavegacion.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -6,7 +7,8 @@
 <html>
 <head>
 <title>TaskManager - Página principal del usuario</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" TYPE="text/css">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	TYPE="text/css">
 <script type="text/javascript" src="jquery/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
@@ -68,13 +70,15 @@
 						<form class="form-horizontal" method="post"
 							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Inbox">
 							<div class="form-group">
-								<label><input type="checkbox" /> ver tareas finalizadas</label>
+								<label><input type="checkbox" name="filtrarTareas"
+									value="No" />Ver tareas finalizadas</label>
 							</div>
 							<div class="form-group">
 								<input id="btnInbox" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>
+
 					<li><h2>Hoy</h2>
 						<form method="post" class="form-horizontal"
 							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Hoy">
@@ -83,6 +87,7 @@
 									class="btn btn-primary" />
 							</div>
 						</form></li>
+
 					<li><h2>Semana</h2>
 						<form method="post" class="form-horizontal"
 							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Semana">
@@ -92,17 +97,17 @@
 							</div>
 						</form></li>
 				</ul>
-
 			</div>
-
 		</div>
 
 
 		<form action="nuevaCategoria" method="post" name="nuevaCategoria_form"
 			class="form-horizontal">
+
 			<div class="form-group">
 				<label class="control-label col-xs-5" for="nombreCategoriaNueva">Nombre
-					de la nueva categoria :</label>
+					de la nueva categoria: </label>
+
 				<div class="col-xs-5">
 					<input type="text" class="form-control" id="nombreCategoriaNueva"
 						placeholder="Escriba el nombre de la nueva categoria"
@@ -128,21 +133,37 @@
 					<c:forEach var="categoria" items="${listaCategorias}">
 						<tr>
 							<td>
-								<form action="renombrarCategoria?idCategoria=${categoria.id}" method="post"
-									name="renombrar_form" class="form-horizontal">
+								<form action="renombrarCategoria?idCategoria=${categoria.id}"
+									method="post" name="renombrar_form" class="form-horizontal">
 
-
-									<input type="text" class="form-control col-md-8"
-										id="Categoria${categoria.id}" 
-										value="${categoria.name}" name="nombreCategoria" required /> <input type="submit"
+									<input type="text" class="form-control col-md-6"
+										id="Categoria${categoria.id}" value="${categoria.name}"
+										name="nombreCategoria" required /> <input type="submit"
 										value="Renombrar" class="btn btn-primary" />
-
-
 								</form>
 							</td>
-							<td><a
-								href="listarTareas?CategoriaSistema=NO&idCategoria=${categoria.id}">
-									tareas</a></td>
+
+							<td>
+								<div class="container-fluid">
+									<form action="listarTareas" method="post"
+										class="form-horizontal">
+
+										<input type="hidden" name="CategoriaSistema" value="NO" /> <input
+											type="hidden" name="idCategoria" value="${categoria.id}" />
+
+										<div class="form-group">
+											<label><input type="checkbox" name="filtrarTareas"
+												value="NO">Ver tareas finalizadas</label>
+										</div>
+
+										<div class="form-group">
+											<input type="submit" value="Ver tareas"
+												class="btn btn-primary" />
+										</div>
+									</form>
+								</div>
+							</td>
+
 							<td class="danger"><a id="eliminar${categoria.id}"
 								onclick="return confirm('Eliminar categoria')"
 								href="eliminarCategoria?idCategoria=${categoria.id}">eliminar</a></td>
@@ -152,9 +173,10 @@
 						</tr>
 					</c:forEach>
 				</table>
-
 			</div>
 		</div>
+		<%-- Panel de categorias de usuario --%>
+
 	</div>
 </body>
 </html>

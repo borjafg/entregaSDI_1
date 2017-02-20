@@ -193,18 +193,7 @@ public class Sesion3Tests {
 		
 		mary.assertTextFieldEquals("nombreCategoria_CategoriaTest", "CategoriaTest");
 	}
-	@Test
-	public void testrenombrarCategoria(){
-		mary.beginAt("/login.jsp");
 
-		mary.setTextField("login", "usuario2");
-		mary.setTextField("password", "usuario2");
-		mary.submit();
-		
-		mary.setTextField("nombreCAtegoria_Categoria 1 para usuario 2", "NuevoNombreCategoria");
-		mary.submit("renombrar_Categoria 1 para usuario 2");
-		mary.assertTextFieldEquals("nombreCategoria_NuevoNombreCategoria", "NuevoNombreCategoria");
-	}
 	@Test
 	public void testDuplicarCategoria(){
 		mary.beginAt("/login.jsp");

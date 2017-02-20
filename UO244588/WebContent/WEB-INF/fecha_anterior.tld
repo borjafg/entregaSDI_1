@@ -9,8 +9,8 @@
 	<uri>http://www.uniovi.es/sdi/fecha_anterior_tlib</uri>
 
 	<tag>
-		<name>anterior_hoy_fecha</name>
-		<tag-class>uo.sdi.tags.MostrarRojoFechaAnteriorHoyTag</tag-class>
+		<name>categ_rojo_tareas_retrasadas_semana</name>
+		<tag-class>uo.sdi.tags.MostrarRojoCategoriaTareasRetradasSemanaTag</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -20,11 +20,17 @@
 			<!-- de ejecución. No tiene que ser una constante -->
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		
+		<attribute>
+			<name>nombreCategoria</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 
 	<tag>
-		<name>anterior_hoy_planeada_finalizada</name>
-		<tag-class>uo.sdi.tags.MostrarTextoRojoFechaAnteriorHoyTag</tag-class>
+		<name>fecha_rojo_tareas_retrasadas</name>
+		<tag-class>uo.sdi.tags.MostrarRojoFechaTareasRestrasadasTag</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -35,12 +41,6 @@
 		
 		<attribute>
 			<name>fecha_finalizacion</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>texto</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>

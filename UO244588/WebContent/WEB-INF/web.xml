@@ -16,7 +16,7 @@
 
 	<context-param>
 		<param-name>logLevel</param-name>
-		<param-value>TRACE</param-value>
+		<param-value>DEBUG</param-value>
 	</context-param>
 
 	<!-- ================= -->

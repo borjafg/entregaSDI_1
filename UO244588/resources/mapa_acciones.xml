@@ -27,8 +27,8 @@
 		
 		<opcion valorOpcion="listarTareas" valorAccion="ListarTareasAction"/>
 		<opcion valorOpcion="nuevaTarea" valorAccion="NuevaTareaAction" />
-		<!--<opcion valorOpcion="modificarTarea" valorAccion="ModificarTareaAction"/>-->
-		<!--<opcion valorOpcion="modificarDatosTarea" valorAccion="ModificarDatosTareaAction"/>-->
+		<opcion valorOpcion="modificarTarea" valorAccion="ModificarTareaAction"/>
+		<opcion valorOpcion="modificarDatosTarea" valorAccion="ModificarDatosTareaAction"/>
 		<opcion valorOpcion="finalizarTarea" valorAccion="FinalizarTareaAction"/>
 	</rol>
 

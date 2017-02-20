@@ -1,5 +1,6 @@
 package uo.sdi.business.impl.task.command;
 
+import uo.sdi.business.exception.BusinessCheck;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.impl.command.Command;
 import uo.sdi.business.impl.util.CategoryCheck;
@@ -22,6 +23,9 @@ public class CreateCategoryCommand implements Command<Category> {
     public Category execute() throws BusinessException {
 	User user = UserFinder.findById(idUser);
 
+	BusinessCheck.isNotNull(user, "El usuario no existe.");
+	CategoryCheck.isUniqueName(name, idUser);
+
 	Category category = new Category(user);
 	category.setName(name);
 
@@ -29,7 +33,6 @@ public class CreateCategoryCommand implements Command<Category> {
 	CategoryCheck.nameIsNotEmpty(category);
 	CategoryCheck.userIsNotNull(category);
 	CategoryCheck.isValidUser(category);
-	CategoryCheck.isUniqueName(category);
 	CategoryCheck.isNotForAdminUser(category);
 
 	Jpa.getManager().persist(category);

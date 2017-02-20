@@ -1,6 +1,5 @@
 package uo.sdi.model;
 
-import alb.util.log.Log;
 
 // Clase con ocultacion de paquete (sólo la usan
 // las clases del modelo de dominio). Gestiona
@@ -23,6 +22,8 @@ class Association {
 	    user._getCategories().remove(category);
 	    category._setUser(null);
 	}
+	
+	
 
     }
 

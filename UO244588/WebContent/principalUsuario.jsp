@@ -71,7 +71,7 @@
 								<label><input type="checkbox" /> ver tareas finalizadas</label>
 							</div>
 							<div class="form-group">
-								<input type="submit" value="Listar tareas"
+								<input id="btnInbox" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>
@@ -79,7 +79,7 @@
 						<form method="post" class="form-horizontal"
 							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Hoy">
 							<div class="form-group">
-								<input type="submit" value="Listar tareas"
+								<input id="btnHoy" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>
@@ -87,7 +87,7 @@
 						<form method="post" class="form-horizontal"
 							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Semana">
 							<div class="form-group">
-								<input type="submit" value="Listar tareas"
+								<input id="btnSemana" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>

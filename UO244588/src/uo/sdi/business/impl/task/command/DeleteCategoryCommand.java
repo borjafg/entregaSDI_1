@@ -7,7 +7,6 @@ import uo.sdi.model.Task;
 import uo.sdi.model.User;
 import uo.sdi.persistence.CategoryFinder;
 import uo.sdi.persistence.UserFinder;
-import uo.sdi.persistence.util.Jpa;
 
 public class DeleteCategoryCommand implements Command<Void> {
 

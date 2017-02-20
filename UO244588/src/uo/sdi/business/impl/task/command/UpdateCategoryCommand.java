@@ -6,7 +6,6 @@ import uo.sdi.business.impl.command.Command;
 import uo.sdi.business.impl.util.CategoryCheck;
 import uo.sdi.model.Category;
 import uo.sdi.persistence.CategoryFinder;
-import uo.sdi.persistence.util.Jpa;
 
 public class UpdateCategoryCommand implements Command<Void> {
 

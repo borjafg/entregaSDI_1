@@ -8,12 +8,22 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import alb.util.date.DateUtil;
 
-public class MostrarRojoFechaAnteriorHoyTag extends SimpleTagSupport {
+public class MostrarRojoCategoriaTareasRetradasSemanaTag extends
+	SimpleTagSupport {
 
     private Date fecha_evaluada;
+    private String nombreCategoria;
 
     public void setFecha_evaluada(Date fecha_evaluada) {
 	this.fecha_evaluada = fecha_evaluada;
+    }
+
+    public void setNombreCategoria(String nombreCategoria) {
+	this.nombreCategoria = nombreCategoria;
+    }
+
+    public void setTexto(String nombreCategoria) {
+	this.nombreCategoria = nombreCategoria;
     }
 
     public void doTag() throws JspException, IOException {
@@ -25,14 +35,14 @@ public class MostrarRojoFechaAnteriorHoyTag extends SimpleTagSupport {
 	    StringBuilder sb = new StringBuilder();
 
 	    sb.append("<p style=\"color:red\">");
-	    sb.append(DateUtil.toString(fecha_evaluada));
+	    sb.append(nombreCategoria);
 	    sb.append("</p>");
 
 	    getJspContext().getOut().write(sb.toString());
 	}
 
 	else {
-	    getJspContext().getOut().write(DateUtil.toString(fecha_evaluada));
+	    getJspContext().getOut().write(nombreCategoria);
 	}
     }
 

@@ -38,17 +38,9 @@ public class CategoryCheck {
 		"Una categoria debe asignarse a un usuario habilitado");
     }
 
-    public static void isUniqueName(Category category) throws BusinessException {
-	Category other = CategoryFinder.findByUserIdAndName(category.getUser()
-		.getId(), category.getName());
-
-	BusinessCheck.isNull(other, "El nombre de la categoria no se puede "
-		+ "repetir para este usuario");
-    }
-    
-    public static void isUniqueName(String category,Long idUser) throws BusinessException{
-	Category other = CategoryFinder.findByUserIdAndName(idUser
-		, category);
+    public static void isUniqueName(String category, Long idUser)
+	    throws BusinessException {
+	Category other = CategoryFinder.findByUserIdAndName(idUser, category);
 
 	BusinessCheck.isNull(other, "El nombre de la categoria no se puede "
 		+ "repetir para este usuario");

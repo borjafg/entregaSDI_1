@@ -76,7 +76,6 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-
 		</div>
 
 		<br />
@@ -97,10 +96,10 @@
 						<c:when test="${empty tarea.category.name}">
 							<c:choose>
 								<c:when
-									test="${(CategoriaSistema == 'SI' && nombreCategoria == 'Semana') || CategoriaSistema == 'NO'}">
-									<td><fech:anterior_hoy_planeada_finalizada
+									test="${(CategoriaSistema == 'SI' && nombreCategoria == 'Semana')}">
+									<td><fech:categ_rojo_tareas_retrasadas_semana
 											fecha_evaluada="${tarea.planned}"
-											fecha_finalizacion="${tarea.finished}" texto="------" /></td>
+											nombreCategoria="------" /></td>
 								</c:when>
 								<c:otherwise>
 									<td>------</td>
@@ -112,9 +111,9 @@
 							<c:choose>
 								<c:when
 									test="${CategoriaSistema == 'SI' && nombreCategoria == 'Semana'}">
-									<td><fech:anterior_hoy_planeada_finalizada
+									<td><fech:categ_rojo_tareas_retrasadas_semana
 											fecha_evaluada="${tarea.planned}"
-											fecha_finalizacion="${tarea.finished}" texto="------" /></td>
+											nombreCategoria="${tarea.category.name}" /></td>
 								</c:when>
 								<c:otherwise>
 									<td>${tarea.category.name}</td>
@@ -131,7 +130,7 @@
 							<td>------</td>
 						</c:when>
 						<c:otherwise>
-							<%-- Tarea planeada --%>
+							<%-- Tarea fecha planeada --%>
 							<c:choose>
 								<c:when
 									test="${CategoriaSistema == 'SI' && nombreCategoria == 'Semana'}">
@@ -139,8 +138,9 @@
 											value="${tarea.planned}" /></td>
 								</c:when>
 								<c:otherwise>
-									<td><fech:anterior_hoy_fecha
-											fecha_evaluada="${tarea.planned}" /></td>
+									<td><fech:fecha_rojo_tareas_retrasadas
+											fecha_evaluada="${tarea.planned}"
+											fecha_finalizacion="${tarea.finished}" /></td>
 								</c:otherwise>
 							</c:choose>
 						</c:otherwise>

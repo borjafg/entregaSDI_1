@@ -138,8 +138,8 @@
 
 									<input type="text" class="form-control col-md-6"
 										id="Categoria${categoria.id}" value="${categoria.name}"
-										name="nombreCategoria" required /> <input type="submit"
-										value="Renombrar" class="btn btn-primary" />
+										name="nombreCategoria_${categoria.name}" required /> <input type="submit"
+										name="renombrar${categoria.name}" class="btn btn-primary" />
 								</form>
 							</td>
 

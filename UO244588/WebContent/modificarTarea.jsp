@@ -85,8 +85,8 @@
 			</div>
 
 			<select class="form-control">
-				<c:forEach var="tarea" items="${listaTareas}">
-					
+				<c:forEach var="categ" items="${categoriasUsuario}">
+					<option value="categ.id">categ.name</option>
 				</c:forEach>
 			</select>
 
@@ -96,7 +96,7 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-3 col-xs-3">
-					<input type="submit" value="Enviar" class="btn btn-primary" />
+					<input type="submit" value="Cambiar datos" class="btn btn-primary" />
 				</div>
 			</div>
 		</form>

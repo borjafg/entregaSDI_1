@@ -20,7 +20,7 @@
 
 			<div id="barraNavegacion" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="cerrarSesion">cerrar sesión</a></li>
+					<li><a id="cerrarSesion" href="cerrarSesion">cerrar sesión</a></li>
 				</ul>
 			</div>
 		</div>

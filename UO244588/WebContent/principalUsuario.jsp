@@ -21,7 +21,7 @@
 
 			<div id="barraNavegacion" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="cerrarSesion">cerrar sesión</a></li>
+					<li><a id="cerrarSesion" href="cerrarSesion">cerrar sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -74,7 +74,7 @@
 									value="No" />Ver tareas finalizadas</label>
 							</div>
 							<div class="form-group">
-								<input id="btnInbox" type="submit" value="Listar tareas"
+								<input name="btnInbox" id="btnInbox" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>
@@ -83,7 +83,7 @@
 						<form method="post" class="form-horizontal"
 							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Hoy">
 							<div class="form-group">
-								<input id="btnHoy" type="submit" value="Listar tareas"
+								<input name="btnHoy" id="btnHoy" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>
@@ -92,7 +92,7 @@
 						<form method="post" class="form-horizontal"
 							action="listarTareas?CategoriaSistema=SI&nombreCategoria=Semana">
 							<div class="form-group">
-								<input id="btnSemana" type="submit" value="Listar tareas"
+								<input name="btnSemana" id="btnSemana" type="submit" value="Listar tareas"
 									class="btn btn-primary" />
 							</div>
 						</form></li>
@@ -114,7 +114,7 @@
 						name="nombreCategoriaNueva" required />
 				</div>
 
-				<input type="submit" value="Crear categoria" class="btn btn-primary" />
+				<input type="submit" name="crearCategoria" value="Crear categoria" class="btn btn-primary" />
 			</div>
 		</form>
 
@@ -168,7 +168,7 @@
 								onclick="return confirm('Eliminar categoria')"
 								href="eliminarCategoria?idCategoria=${categoria.id}">eliminar</a></td>
 
-							<td><a href="duplicarCategoria?idCategoria=${categoria.id }">duplicar</a>
+							<td><a id="duplicar_${categoria.name}" href="duplicarCategoria?idCategoria=${categoria.id }">duplicar</a>
 							</td>
 						</tr>
 					</c:forEach>

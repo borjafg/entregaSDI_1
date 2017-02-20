@@ -4,7 +4,8 @@
 <html>
 <head>
 <title>TaskManager - Administración de usuarios</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" TYPE="text/css">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	TYPE="text/css">
 <script type="text/javascript" src="jquery/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
@@ -52,15 +53,15 @@
 					<td>${usuario.status.name().toLowerCase()}</td>
 					<c:choose>
 						<c:when test="${usuario.status == 'DISABLED'}">
-							<td class="warning"><a
+							<td class="warning"><a id="habilitar${usuario.login}"
 								href="cambiarEstadoUsuario?opcion=habilitar&id=${usuario.id}">habilitar</a></td>
 						</c:when>
 						<c:otherwise>
-							<td class="warning"><a
+							<td class="warning"><a id="deshabilitar${usuario.login}"
 								href="cambiarEstadoUsuario?opcion=deshabilitar&id=${usuario.id}">deshabilitar</a></td>
 						</c:otherwise>
 					</c:choose>
-					<td class="danger"><a
+					<td class="danger"><a id="eliminar_${usuario.login}"
 						onclick="return confirm('Eliminar usuario')"
 						href="borrarUsuario?id=${usuario.id}">borrar</a></td>
 				</tr>

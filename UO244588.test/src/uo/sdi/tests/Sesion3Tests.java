@@ -11,6 +11,8 @@ public class Sesion3Tests {
 	 * Ejecutar los test después de inicializar la base de datos con el script 
 	 * de creación
 	 * 
+	 * Se necesita conexión a internet para poder ejecutar los tests
+	 * 
 	 * Elementos con menús desplegables (Javascript no se han podido hacer
 	 * test de ellos)
 	 * 

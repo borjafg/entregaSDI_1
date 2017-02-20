@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+      http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+	version="2.1">
+
+	<tlib-version>2017</tlib-version>
+	<short-name>fecha_anterior</short-name>
+	<uri>http://www.uniovi.es/sdi/fecha_anterior_tlib</uri>
+
+	<tag>
+		<name>anterior_hoy_fecha</name>
+		<tag-class>uo.sdi.tags.MostrarRojoFechaAnteriorHoyTag</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>fecha_evaluada</name>
+			<required>true</required>
+			<!-- Este atributo puede adquirir su valor en tiempo -->
+			<!-- de ejecución. No tiene que ser una constante -->
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>anterior_hoy_texto</name>
+		<tag-class>uo.sdi.tags.MostrarTextoRojoFechaAnteriorHoyTag</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>fecha_evaluada</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>texto</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+</taglib>

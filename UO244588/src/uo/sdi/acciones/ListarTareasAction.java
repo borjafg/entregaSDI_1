@@ -96,7 +96,7 @@ public class ListarTareasAction implements Accion {
 		    .findTodayTasksByUserId(user.getId()));
 	}
 
-	else { // categoriaa Semana
+	else { // categoria Semana
 	    listaTareas = OrdenationBy.orderByPlannedDateAndName(taskService
 		    .findWeekTasksByUserId(user.getId()));
 	}
@@ -107,8 +107,8 @@ public class ListarTareasAction implements Accion {
 
 	request.setAttribute("CategoriaSistema",
 		request.getParameter("CategoriaSistema"));
-	request.setAttribute("CategoriaSistema",
-		request.getParameter(request.getParameter("nombreCategoria")));
+	request.setAttribute("nombreCategoria",
+		request.getParameter("nombreCategoria"));
 
 	return "EXITO";
     }

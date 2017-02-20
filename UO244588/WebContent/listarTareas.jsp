@@ -2,6 +2,8 @@
 <%@ include file="jsp_util/comprobarNavegacion.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.uniovi.es/sdi/fecha_anterior_tlib"
+	prefix="fech"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,12 +95,33 @@
 					<td><a href="TareaPrincipal?id=${tarea.id}">${tarea.title}</a></td>
 					<c:choose>
 						<c:when test="${empty tarea.category.name}">
-							<td>------</td>
+							<c:choose>
+								<c:when
+									test="${CategoriaSistema == 'SI' && nombreCategoria == 'Semana'}">
+									<td><fech:anterior_hoy_texto
+											fecha_evaluada="${tarea.planned}" texto="------" /></td>
+								</c:when>
+								<c:otherwise>
+									<td>------</td>
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 						<c:otherwise>
-							<td>${tarea.category.name}</td>
+							<%-- Con categoria asignada --%>
+							<c:choose>
+								<c:when
+									test="${CategoriaSistema == 'SI' && nombreCategoria == 'Semana'}">
+									<td><fech:anterior_hoy_texto
+											fecha_evaluada="${tarea.planned}"
+											texto="${tarea.category.name}" /></td>
+								</c:when>
+								<c:otherwise>
+									<td>${tarea.category.name}</td>
+								</c:otherwise>
+							</c:choose>
 						</c:otherwise>
 					</c:choose>
+
 					<td><fmt:formatDate pattern="dd/MM/yyyy"
 							value="${tarea.created}" /></td>
 
@@ -107,9 +130,18 @@
 							<td>------</td>
 						</c:when>
 						<c:otherwise>
-							<td><fmt:formatDate pattern="dd/MM/yyyy"
-									value="${tarea.planned}" /></td>
-
+							<%-- Tarea planeada --%>
+							<c:choose>
+								<c:when
+									test="${CategoriaSistema == 'SI' && nombreCategoria == 'Semana'}">
+									<td><fmt:formatDate pattern="dd/MM/yyyy"
+											value="${tarea.planned}" /></td>
+								</c:when>
+								<c:otherwise>
+									<td><fech:anterior_hoy_fecha
+											fecha_evaluada="${tarea.planned}" /></td>
+								</c:otherwise>
+							</c:choose>
 						</c:otherwise>
 					</c:choose>
 
